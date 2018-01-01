@@ -22,7 +22,7 @@ trait JobTrait
                 $this->job = $job;
 
                 /** @var Job $default */
-                $default = new $job;
+                $default = new $job();
 
                 $default->setEntity($this->getEntity());
 
@@ -41,7 +41,7 @@ trait JobTrait
         }
 
         if (is_a($this->job, Job::class, true)) {
-            return new $this->job;
+            return new $this->job();
         }
 
         return $this->guessJobFromEntityName();
