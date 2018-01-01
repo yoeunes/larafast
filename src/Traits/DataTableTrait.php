@@ -21,7 +21,7 @@ trait DataTableTrait
         }
 
         if (is_a($this->dataTable, DataTable::class, true)) {
-            return new $this->dataTable;
+            return new $this->dataTable();
         }
 
         return $this->guessDataTableFromEntityName();
@@ -51,7 +51,7 @@ trait DataTableTrait
                 $this->dataTable = $dataTable;
 
                 /** @var DataTable $default */
-                $default = new $dataTable;
+                $default = new $dataTable();
 
                 $default->setEntity($this->getEntity());
 
@@ -61,7 +61,6 @@ trait DataTableTrait
             return new DefaultDataTable($this->getEntity());
         }
     }
-
 
     /**
      * @return string
