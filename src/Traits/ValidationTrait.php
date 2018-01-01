@@ -20,7 +20,7 @@ trait ValidationTrait
      */
     public function getRules(string $rule = null): array
     {
-        return array_key_exists($rule, $this->rules) ? $this->rules[ $rule ] : $this->rules;
+        return array_key_exists($rule, $this->rules) ? $this->rules[$rule] : $this->rules;
     }
 
     /**
@@ -63,7 +63,7 @@ trait ValidationTrait
     public function getFillableAttributes(string $attribute = null): array
     {
         if (array_key_exists($attribute, $this->fillableAttributes)) {
-            return $this->fillableAttributes[ $attribute ];
+            return $this->fillableAttributes[$attribute];
         }
 
         return !empty($this->fillableAttributes) ? $this->fillableAttributes : $this->fillable;
