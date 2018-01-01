@@ -3,18 +3,18 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Illuminate\Support\Collection;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Image\Exceptions\InvalidManipulation;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Media;
 
 trait MediaTrait
 {
     use HasMediaTrait;
 
-    /** @var array  */
+    /** @var array */
     protected $files = [];
 
-    /** @var array  */
+    /** @var array */
     protected $thumbSize = [
         'width'  => 100,
         'height' => 100,
@@ -57,8 +57,8 @@ trait MediaTrait
     {
         try {
             $this->addMediaConversion('thumb')
-                ->width($this->thumbSize[ 'width' ])
-                ->height($this->thumbSize[ 'height' ])
+                ->width($this->thumbSize['width'])
+                ->height($this->thumbSize['height'])
                 ->quality(20)
                 ->optimize();
         } catch (InvalidManipulation $e) {

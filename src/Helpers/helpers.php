@@ -12,7 +12,7 @@ if (!function_exists('active')) {
      */
     function active($routes, string $class = 'active', bool $condition = true): string
     {
-        return call_user_func_array([app('router'), 'is'], (array)$routes) && $condition ? ' ' . $class : '';
+        return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? ' '.$class : '';
     }
 }
 
@@ -24,7 +24,6 @@ if (!function_exists('getForm')) {
      */
     function getForm($action = 'create'): string
     {
-
         if (view()->exists($view = preg_replace('/(\.create|\.edit)/', '._form_'.$action, session('uri')))) {
             return $view;
         }
@@ -39,9 +38,9 @@ if (!function_exists('getForm')) {
 
 if (!function_exists('success')) {
     /**
-     * @param string $message
+     * @param string      $message
      * @param string|null $title
-     * @param array $options
+     * @param array       $options
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -55,9 +54,9 @@ if (!function_exists('success')) {
 
 if (!function_exists('error')) {
     /**
-     * @param string $message
+     * @param string      $message
      * @param string|null $title
-     * @param array $options
+     * @param array       $options
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -71,9 +70,9 @@ if (!function_exists('error')) {
 
 if (!function_exists('information')) {
     /**
-     * @param string $message
+     * @param string      $message
      * @param string|null $title
-     * @param array $options
+     * @param array       $options
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -87,9 +86,9 @@ if (!function_exists('information')) {
 
 if (!function_exists('warning')) {
     /**
-     * @param string $message
+     * @param string      $message
      * @param string|null $title
-     * @param array $options
+     * @param array       $options
      *
      * @return \Illuminate\Http\RedirectResponse
      */
