@@ -2,104 +2,60 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use Illuminate\Pagination\Paginator;
+use Yoeunes\Larafast\Entities\Entity;
 
 trait EntityTrait
 {
+    /** @var Entity */
+    protected $entity;
+
     /**
-     * @param int $perPage
+     * @return Entity
+     */
+    public function getEntity(): Entity
+    {
+        if ($this->entity instanceof Entity) {
+            return $this->entity;
+        }
+
+        if (is_a($this->entity, Entity::class, true)) {
+            return new $this->entity();
+        }
+    }
+
+    /**
+     * @param Entity $entity
      *
-     * @return Paginator
-     */
-    public static function findAllPaginated(int $perPage = 20): Paginator
-    {
-        return static::latest()->paginate($perPage);
-    }
-
-    /**
-     * @param self $model
-     *
-     * @return bool
-     */
-    public function matches(self $model): bool
-    {
-        return $this->id === $model->id;
-    }
-
-    /**
-     * @return bool
-     */
-    public function active(): bool
-    {
-        return (bool) $this->active;
-    }
-
-    /**
-     * @return bool
-     */
-    public function notActive(): bool
-    {
-        return !$this->active();
-    }
-
-    /**
-     * @return bool
-     */
-    public function activate(): bool
-    {
-        return $this->update(['active' => true]);
-    }
-
-    /**
-     * @return bool
-     */
-    public function deactivate(): bool
-    {
-        return $this->update(['active' => false]);
-    }
-
-    /**
      * @return $this
      */
-    public function activateAndDeactivateOthers()
+    public function setEntity(Entity $entity)
     {
-        DB::transaction(function () {
-            $this->deactivateAll();
-            $this->update(['active' => true]);
-        });
+        $this->entity = $entity;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function deactivateAll()
+    public function entityName(): string
     {
-        return DB::table(self::TABLE)->where('active', '=', 1)->update(['active' => 0]);
+        if ($this->entity instanceof Entity) {
+            return get_class($this->entity);
+        }
+
+        if (is_a($this->entity, Entity::class, true)) {
+            return $this->entity;
+        }
+
+        return '';
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function activateAll()
+    public function entityBaseName(): string
     {
-        return DB::table(self::TABLE)->where('active', '=', 0)->update(['active' => 1]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getActive()
-    {
-        return self::where('active', 1)->first();
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getActives()
-    {
-        return self::where('active', 1)->get();
+        return class_basename($this->entityName());
     }
 }
