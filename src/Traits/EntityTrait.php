@@ -39,7 +39,7 @@ trait EntityTrait
      */
     public function notActive(): bool
     {
-        return ! $this->active();
+        return !$this->active();
     }
 
     /**
