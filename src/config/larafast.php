@@ -6,4 +6,5 @@ return [
     'datatable_namespace'       => 'App\\DataTables',
     'datatable_scope_namespace' => 'App\\DataTables\\Scopes',
     'jobs_namespace'            => 'App\\Jobs',
+    'policies_namespace'        => 'App\\Policies',
 ];
