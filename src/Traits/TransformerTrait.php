@@ -36,7 +36,7 @@ trait TransformerTrait
     /**
      * @return Entity
      */
-    abstract public function getEntity();
+    abstract public function getEntity(): Entity;
 
     /**
      * @return Transformer

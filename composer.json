@@ -42,7 +42,7 @@
     },
     "autoload-dev"     : {
         "psr-4": {
-            "Yoeunes\\Larafast\\Test\\": "tests"
+            "Yoeunes\\Larafast\\Tests\\": "tests"
         }
     },
     "minimum-stability": "dev",
@@ -50,20 +50,8 @@
     "extra"            : {
         "laravel": {
             "providers": [
-                "Barryvdh\\Cors\\ServiceProvider",
-                "Laravel\\Passport\\PassportServiceProvider",
-                "Collective\\Html\\HtmlServiceProvider",
-                "Spatie\\Fractal\\FractalServiceProvider",
-                "Spatie\\MediaLibrary\\MediaLibraryServiceProvider",
-                "Spatie\\Permission\\PermissionServiceProvider",
-                "Yajra\\DataTables\\DataTablesServiceProvider",
                 "Yoeunes\\Larafast\\LarafastServiceProvider"
-            ],
-            "aliases"  : {
-                "Form"   : "Collective\\Html\\FormFacade",
-                "Html"   : "Collective\\Html\\HtmlFacade",
-                "Fractal": "Spatie\\Fractal\\FractalFacade"
-            }
+            ]
         }
     },
     "config"           : {

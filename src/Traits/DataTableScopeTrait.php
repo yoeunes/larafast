@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Yoeunes\Larafast\Traits;
 
 use Yoeunes\Larafast\DataTables\Scopes\DataTableScope;
 use Yoeunes\Larafast\DataTables\Scopes\DefaultDataTableScope;
