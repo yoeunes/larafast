@@ -11,12 +11,6 @@
             "role"    : "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/yoeunes/toastr"
-        }
-    ],
     "require"          : {
         "php": ">=7.0.0",
         "barryvdh/laravel-cors": "^0.10.1",
