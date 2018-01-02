@@ -10,7 +10,6 @@ trait PolicyTrait
     /** @var Policy */
     protected $policy;
 
-
     public function policy($policy = null)
     {
         if (null !== $policy) {
