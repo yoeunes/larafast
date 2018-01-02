@@ -7,4 +7,9 @@ return [
     'datatable_scope_namespace' => 'App\\DataTables\\Scopes',
     'jobs_namespace'            => 'App\\Jobs',
     'policies_namespace'        => 'App\\Policies',
+    'exceptions'                   => [
+        \Illuminate\Auth\Access\AuthorizationException::class       => ['method' => 'unauthorized', 'message' => null],
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class => ['method' => 'notFound', 'message' => null],
+        \Illuminate\Auth\AuthenticationException::class             => ['method'  => 'unauthorized', 'message' => 'Unauthenticated'],
+    ],
 ];
