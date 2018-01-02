@@ -2,7 +2,6 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Services\DefaultTransformer;
 use Yoeunes\Larafast\Services\Transformer;
