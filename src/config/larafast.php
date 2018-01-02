@@ -8,6 +8,7 @@ return [
     'jobs_namespace'               => 'App\\Jobs',
     'policies_namespace'           => 'App\\Policies',
     'services_namespace'           => 'App\\Services',
+    'transformers_namespace'       => 'App\\Transformers',
     'exceptions'                   => [
         \Illuminate\Auth\Access\AuthorizationException::class       => ['method' => 'unauthorized', 'message' => null],
         \Illuminate\Database\Eloquent\ModelNotFoundException::class => ['method' => 'notFound', 'message' => null],
