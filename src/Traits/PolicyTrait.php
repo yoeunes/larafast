@@ -2,7 +2,6 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Policies\Policy;
 
 trait PolicyTrait
@@ -10,41 +9,15 @@ trait PolicyTrait
     /** @var Policy */
     protected $policy;
 
-    public function policy($policy = null)
-    {
-        if (null !== $policy) {
-            $this->policy = $policy;
-
-            return $this;
-        }
-
-        if ($this->policy instanceof Policy) {
-            return $this->policy;
-        }
-
-        if (is_a($this->policy, Policy::class, true)) {
-            return new $this->policy();
-        }
-
-        return $this->guessFromEntityName();
-    }
-
     /**
      * @return Policy
      */
-    private function guessFromEntityName()
+    private function guessPolicyFromEntityName()
     {
-        if ('' !== $entity = $this->entity_base_name()) {
+        if ('' !== $entity = $this->entityBaseName()) {
             $policy = config('larafast.policies_namespace').'\\'.$entity.'Policy';
             if (class_exists($policy)) {
-                $this->policy = $policy;
-
-                /** @var Policy $default */
-                $default = new $policy();
-
-                $default->setEntity($this->getEntity());
-
-                return $default;
+                return new $policy();
             }
         }
     }
@@ -52,19 +25,18 @@ trait PolicyTrait
     /**
      * @return string
      */
-    abstract public function entity_base_name();
-
-    /**
-     * @return Entity
-     */
-    abstract public function getEntity();
+    abstract public function entityBaseName(): string;
 
     /**
      * @return Policy
      */
     public function getPolicy(): Policy
     {
-        return $this->policy;
+        if ($this->policy instanceof Policy || is_a($this->policy, Policy::class, true)) {
+            return $this->policy;
+        }
+
+        return $this->guessPolicyFromEntityName();
     }
 
     /**
