@@ -15,7 +15,7 @@ class TestCase extends BaseTestCase
     {
         return [
             AppServiceProvider::class,
-            LarafastServiceProvider::class
+            LarafastServiceProvider::class,
         ];
     }
 

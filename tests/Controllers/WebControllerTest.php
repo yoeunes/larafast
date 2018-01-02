@@ -26,7 +26,7 @@ class WebControllerTest extends TestCase
     {
         /** @var TestResponse $response */
         $response = $this->get('/lesson/create');
-dd($response);
+        dd($response);
         $response->assertSuccessful();
         $response->assertSeeText('welcome to abstract show page');
     }

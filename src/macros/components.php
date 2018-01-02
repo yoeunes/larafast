@@ -2,30 +2,29 @@
 
 Form::component('text_', 'components.form.text', [
     'name',
-    'placeholder' => null,
-    'value' => null,
-    'attributes' => [],
-    'label_attributes' => null
+    'placeholder'      => null,
+    'value'            => null,
+    'attributes'       => [],
+    'label_attributes' => null,
 ]);
 
 Form::component('textarea_', 'components.form.textarea', [
     'name',
-    'editor' => true,
-    'placeholder' => null,
-    'value' => null,
-    'attributes' => [],
-    'label_attributes' => null
+    'editor'           => true,
+    'placeholder'      => null,
+    'value'            => null,
+    'attributes'       => [],
+    'label_attributes' => null,
 ]);
 
 Form::component('file_', 'components.form.file', [
     'name',
-    'placeholder' => null,
-    'attributes' => [],
-    'label_attributes' => null
+    'placeholder'      => null,
+    'attributes'       => [],
+    'label_attributes' => null,
 ]);
 
 Html::macro('nav', function ($name, $icon = '') {
-
     $cb = function ($fn) {
         return $fn;
     };
@@ -59,4 +58,3 @@ Html::macro('nav', function ($name, $icon = '') {
         </li>
 HTML;
 });
-

@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function bootMacros()
     {
-        require __DIR__ . '/../../../src/macros/blade.php';
-        require __DIR__ . '/../../../src/macros/components.php';
-        require __DIR__ . '/../../../src/macros/routes.php';
+        require __DIR__.'/../../../src/macros/blade.php';
+        require __DIR__.'/../../../src/macros/components.php';
+        require __DIR__.'/../../../src/macros/routes.php';
     }
 }
