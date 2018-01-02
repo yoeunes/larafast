@@ -10,8 +10,8 @@ class UriSessionForWebRoutes
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -20,7 +20,7 @@ class UriSessionForWebRoutes
         $route = app('router')->getCurrentRoute();
 
         if (null !== $route && is_a($controller = $route->getController(), WebController::class)) {
-            session(['uri' => $route->getPrefix() . '.' . $route->getName()]);
+            session(['uri' => $route->getPrefix().'.'.$route->getName()]);
         }
 
         return $next($request);

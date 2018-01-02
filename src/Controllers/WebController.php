@@ -13,9 +13,9 @@ class WebController extends Controller
     use ViewTrait, DataTableTrait, DataTableScopeTrait, ServiceTrait;
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {

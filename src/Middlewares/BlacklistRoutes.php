@@ -11,18 +11,19 @@ class BlacklistRoutes
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @return mixed
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @throws BlacklistRouteException
+     *
+     * @return mixed
      */
     public function handle($request, Closure $next)
     {
         if (null !== ($route = app('router')->getCurrentRoute())
             && is_a($controller = $route->getController(), Controller::class)
             && in_array($route->getActionMethod(), $controller->getBlacklist(), true)) {
-            throw new BlacklistRouteException;
+            throw new BlacklistRouteException();
         }
 
         return $next($request);
