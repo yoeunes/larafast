@@ -21,13 +21,14 @@ class DataTable extends BaseDataTable
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
+     *
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
 
-        if($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
+        if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
             $dataTable->addColumn('image', function (Entity $entity) {
                 return '<img src="'.asset($entity->image()).'"  width="80" height="80">';
             })
@@ -61,14 +62,14 @@ class DataTable extends BaseDataTable
             ->columns($this->getColumns())
             ->minifiedAjax();
 
-        if($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
+        if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
             $builder
                 ->addColumn([
                     'defaultContent' => '',
                     'data'           => 'image',
                     'name'           => 'image',
                     'title'          => 'Image',
-                    'data-class'     => 'min-width center'
+                    'data-class'     => 'min-width center',
                 ]);
         }
 
