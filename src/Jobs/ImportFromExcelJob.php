@@ -21,7 +21,7 @@ class ImportFromExcelJob extends Job
 
     public function handle()
     {
-        collect($this->data)->chunk(100)->each(function(Collection $item) {
+        collect($this->data)->chunk(100)->each(function (Collection $item) {
             $this->getEntity()->insertOrUpdate($item->toArray());
         });
     }
