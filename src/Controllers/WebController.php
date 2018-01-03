@@ -6,6 +6,7 @@ use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Collections\RowCollection;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Yoeunes\Larafast\Entities\Entity;
+use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
 use Yoeunes\Larafast\Policies\Policy;
 use Yoeunes\Larafast\Traits\DataTableScopeTrait;
 use Yoeunes\Larafast\Traits\DataTableTrait;
@@ -182,7 +183,7 @@ class WebController extends Controller
                 });
             });
 
-//        dispatch(new ImportFromExcelJob($this->entityName(), $data->toArray()));
+        dispatch(new ImportFromExcelJob($this->entityName(), $data->toArray()));
 
         return information('L\'importation est en cours veuillez patienter');
     }
