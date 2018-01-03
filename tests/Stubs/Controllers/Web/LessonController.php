@@ -7,5 +7,10 @@ use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 
 class LessonController extends WebController
 {
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     protected $entity = Lesson::class;
 }

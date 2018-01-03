@@ -2,6 +2,7 @@
 
 namespace Yoeunes\Larafast\Tests;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Mockery;
@@ -70,5 +71,11 @@ class TestCase extends BaseTestCase
             $table->string('subject');
             $table->timestamps();
         });
+
+        $kernel = app('Illuminate\Contracts\Http\Kernel');
+
+        $kernel->pushMiddleware(\Illuminate\Session\Middleware\StartSession::class);
+        $kernel->pushMiddleware(\Yoeunes\Larafast\Middlewares\BlacklistRoutes::class);
+        $kernel->pushMiddleware(\Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes::class);
     }
 }

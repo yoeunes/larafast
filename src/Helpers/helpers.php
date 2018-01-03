@@ -32,7 +32,7 @@ if (!function_exists('getForm')) {
             return $view;
         }
 
-        return 'admin.default._form';
+        return 'larafast.default.partials._form';
     }
 }
 

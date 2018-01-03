@@ -66,9 +66,12 @@ class LarafastServiceProvider extends ServiceProvider
 
     private function registerMiddlewares()
     {
-        $this->app['router']->pushMiddlewareToGroup('web', \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class);
-        $this->app['router']->pushMiddlewareToGroup('web', \Yoeunes\Larafast\Middlewares\BlacklistRoutes::class);
-        $this->app['router']->pushMiddlewareToGroup('web', \Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes::class);
-        $this->app['router']->pushMiddlewareToGroup('api', \Barryvdh\Cors\HandleCors::class);
+        /** @var \Illuminate\Routing\Router $router */
+        $router = $this->app['router'];
+
+        $router->pushMiddlewareToGroup('api', \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class);
+        $router->pushMiddlewareToGroup('web', \Yoeunes\Larafast\Middlewares\BlacklistRoutes::class);
+        $router->pushMiddlewareToGroup('web', \Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes::class);
+        $router->pushMiddlewareToGroup('api', \Barryvdh\Cors\HandleCors::class);
     }
 }

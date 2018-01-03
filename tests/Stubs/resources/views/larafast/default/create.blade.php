@@ -10,8 +10,10 @@
         </div>
         <div class="global-body">
             {{ Form::open(['route' => preg_replace('/\.create/', '.store', app('router')->getCurrentRoute()->getName()), 'files' => true]) }}
-                {{ Form::text_('title') }}
-                {{ Form::text_('subject') }}
+                <div class="row">
+                    @include(getForm())
+                </div>
+                @include('larafast.default.partials._save_and_reset_buttons')
             {{ Form::close() }}
         </div>
     </div>
