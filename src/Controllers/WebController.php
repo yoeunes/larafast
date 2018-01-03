@@ -17,9 +17,9 @@ class WebController extends Controller
     use ViewTrait, DataTableTrait, DataTableScopeTrait, ServiceTrait;
 
     /**
-     * @return mixed
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return mixed
      */
     public function index()
     {
@@ -29,7 +29,6 @@ class WebController extends Controller
 
         return $this->getDataTable()->addScope($this->getDataTableScope())->render($this->getView(__FUNCTION__));
     }
-
 
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -68,9 +67,9 @@ class WebController extends Controller
     /**
      * @param int $id
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(int $id)
     {
@@ -96,9 +95,9 @@ class WebController extends Controller
     /**
      * @param int $id
      *
-     * @return \Illuminate\Http\RedirectResponse
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(int $id)
     {
@@ -121,10 +120,10 @@ class WebController extends Controller
     /**
      * @param int $id
      *
-     * @return \Illuminate\Http\RedirectResponse
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $id)
     {
@@ -143,9 +142,9 @@ class WebController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function excelCreate()
     {
@@ -157,9 +156,9 @@ class WebController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function excelStore()
     {
@@ -210,9 +209,9 @@ class WebController extends Controller
     /**
      * @param int $id
      *
-     * @return \Illuminate\Http\RedirectResponse
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function activate(int $id)
     {
@@ -233,9 +232,9 @@ class WebController extends Controller
     /**
      * @param int $id
      *
-     * @return \Illuminate\Http\RedirectResponse
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function deactivate(int $id)
     {

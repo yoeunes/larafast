@@ -16,9 +16,9 @@ class Service
     /**
      * @param array $attributes
      *
-     * @return $this|\Illuminate\Database\Eloquent\Model
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return $this|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $attributes = [])
     {
@@ -46,12 +46,12 @@ class Service
     }
 
     /**
-     * @param array $attributes
+     * @param array  $attributes
      * @param Entity $entity
      *
-     * @return bool
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return bool
      */
     public function update(Entity $entity, array $attributes = [])
     {
@@ -66,7 +66,7 @@ class Service
         }
 
         if (!empty($files = array_intersect($this->getEntity()->getFiles(), array_keys(request()->allFiles())))) {
-            if($entity->clearMediaCollection) {
+            if ($entity->clearMediaCollection) {
                 $entity->clearMediaCollection();
             }
             $entity
@@ -84,10 +84,10 @@ class Service
     /**
      * @param Entity $entity
      *
-     * @return bool|null
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
+     * @return bool|null
      */
     public function destroy(Entity $entity)
     {
@@ -101,9 +101,9 @@ class Service
     /**
      * @param Entity $entity
      *
-     * @return bool
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return bool
      */
     public function activate(Entity $entity)
     {
@@ -117,9 +117,9 @@ class Service
     /**
      * @param Entity $entity
      *
-     * @return bool
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return bool
      */
     public function deactivate(Entity $entity)
     {
