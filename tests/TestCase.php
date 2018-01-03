@@ -2,7 +2,6 @@
 
 namespace Yoeunes\Larafast\Tests;
 
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Mockery;

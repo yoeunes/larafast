@@ -22,7 +22,6 @@ class WebControllerTest extends TestCase
         $router = $this->app['router'];
 
         $router->resource('lessons', 'Yoeunes\Larafast\Tests\Stubs\Controllers\Web\LessonController');
-
     }
 
     /** @test */
@@ -32,7 +31,7 @@ class WebControllerTest extends TestCase
         $router = $this->app['router'];
 
         $router->resource('lessons', 'Yoeunes\Larafast\Tests\Stubs\Controllers\Web\LessonController');
-        
+
         /** @var TestResponse $response */
         $response = $this->call('get', '/lessons/create');
         dd($response);
