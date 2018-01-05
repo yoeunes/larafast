@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Collections\RowCollection;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
+use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
 use Yoeunes\Larafast\Policies\Policy;
 use Yoeunes\Larafast\Traits\DataTableScopeTrait;
 use Yoeunes\Larafast\Traits\DataTableTrait;
@@ -16,6 +17,13 @@ use Yoeunes\Larafast\Traits\ViewTrait;
 class WebController extends Controller
 {
     use ViewTrait, DataTableTrait, DataTableScopeTrait, ServiceTrait;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware(['web', UriSessionForWebRoutes::class]);
+    }
 
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException

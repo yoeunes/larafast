@@ -20,7 +20,7 @@ class BlacklistRoutes
      */
     public function handle($request, Closure $next)
     {
-//        dd(app('router')->getCurrentRoute());
+        /** @var \Illuminate\Routing\Route $route */
         if (null !== ($route = app('router')->getCurrentRoute())
             && is_a($controller = $route->getController(), Controller::class)
             && in_array($route->getActionMethod(), $controller->getBlacklist(), true)) {

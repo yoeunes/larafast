@@ -34,7 +34,6 @@ class LarafastServiceProvider extends ServiceProvider
     {
         $this->registerServices();
         $this->registerAliases();
-        $this->registerMiddlewares();
     }
 
     private function registerServices()
@@ -62,16 +61,5 @@ class LarafastServiceProvider extends ServiceProvider
             $loader->alias('Fractal', \Spatie\Fractal\FractalFacade::class);
             $loader->alias('Toastr', \Kamaln7\Toastr\Facades\Toastr::class);
         }
-    }
-
-    private function registerMiddlewares()
-    {
-        /** @var \Illuminate\Routing\Router $router */
-        $router = $this->app['router'];
-
-        $router->pushMiddlewareToGroup('api', \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class);
-        $router->pushMiddlewareToGroup('web', \Yoeunes\Larafast\Middlewares\BlacklistRoutes::class);
-        $router->pushMiddlewareToGroup('web', \Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes::class);
-        $router->pushMiddlewareToGroup('api', \Barryvdh\Cors\HandleCors::class);
     }
 }

@@ -17,9 +17,9 @@ class UriSessionForWebRoutes
      */
     public function handle($request, Closure $next)
     {
-        $route = app('router')->getCurrentRoute();
-
-        if (null !== $route && is_a($controller = $route->getController(), WebController::class)) {
+        /** @var \Illuminate\Routing\Route$route */
+        if (null !== ($route = app('router')->getCurrentRoute())
+            && is_a($controller = $route->getController(), WebController::class)) {
             session(['uri' => $route->getPrefix().'.'.$route->getName()]);
         }
 

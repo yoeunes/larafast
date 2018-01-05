@@ -14,8 +14,7 @@ trait ViewTrait
      */
     public function getView(string $action): string
     {
-//        dd(session('uri'));
-        return view()->exists(session('uri')) ? session('uri') : config('larafast.views_path').'.'.$action;
+        return view()->exists(session('uri')) ? session('uri') : config('larafast.views_path').'.default.'.$action;
     }
 
     /**

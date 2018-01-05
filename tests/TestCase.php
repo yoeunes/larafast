@@ -3,6 +3,7 @@
 namespace Yoeunes\Larafast\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\Schema;
 use Mockery;
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -74,7 +75,11 @@ class TestCase extends BaseTestCase
         $kernel = app('Illuminate\Contracts\Http\Kernel');
 
         $kernel->pushMiddleware(\Illuminate\Session\Middleware\StartSession::class);
-        $kernel->pushMiddleware(\Yoeunes\Larafast\Middlewares\BlacklistRoutes::class);
-        $kernel->pushMiddleware(\Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes::class);
+    }
+
+    protected function showError(TestResponse $response)
+    {
+        dump($response->content());
+        dd($response->exception ? $response->exception->getMessage() : null);
     }
 }
