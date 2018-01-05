@@ -1,5 +1,9 @@
 before_commands:
-    - "composer update --prefer-source"
+  - composer self-update
+  - composer install
+  - mkdir -p tests/Stubs/storage/framework/views/
+  - sudo chmod -R 777 tests/Stubs/storage/framework/views/
+  - composer update --prefer-source
 
 checks:
     php:
