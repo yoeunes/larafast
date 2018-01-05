@@ -4,4 +4,4 @@ vendor/
 composer.phar
 composer.lock
 coverage.clover
-tests/Stubs/storage/framework/views
+tests/Stubs/storage/framework/views/*
