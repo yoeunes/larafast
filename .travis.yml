@@ -6,7 +6,7 @@ php:
 
 before_script:
   - composer self-update
-  - composer install --dev
+  - composer install
   - mkdir -p tests/Stubs/storage/framework/views/
   - sudo chmod -R 777 tests/Stubs/storage/framework/views/
 
