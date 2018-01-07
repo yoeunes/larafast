@@ -54,7 +54,7 @@ class TestCase extends BaseTestCase
         $this->normalUser = Factory::create(User::class, ['name' => 'normal']);
         $this->normalUser->assignRole($normalRole);
 
-        $view   = Factory::create(Permission::class, ['name' => 'lessons view']);
+        $view = Factory::create(Permission::class, ['name' => 'lessons view']);
         $create = Factory::create(Permission::class, ['name' => 'lessons create']);
         $update = Factory::create(Permission::class, ['name' => 'lessons update']);
         $delete = Factory::create(Permission::class, ['name' => 'lessons delete']);
@@ -91,25 +91,25 @@ class TestCase extends BaseTestCase
 
         $app['config']->set('auth', [
             'defaults' => [
-                'guard' => 'web',
+                'guard'     => 'web',
                 'passwords' => 'users',
             ],
             'guards' => [
                 'web' => [
-                    'driver' => 'session',
+                    'driver'   => 'session',
                     'provider' => 'users',
                 ],
 
                 'api' => [
-                    'driver' => 'token',
+                    'driver'   => 'token',
                     'provider' => 'users',
                 ],
             ],
             'providers'    => [
                 'users' => [
                     'driver' => 'eloquent',
-                    'model' => \Yoeunes\Larafast\Tests\Stubs\Entities\User::class,
-                ]
+                    'model'  => \Yoeunes\Larafast\Tests\Stubs\Entities\User::class,
+                ],
             ],
         ]);
 

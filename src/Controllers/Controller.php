@@ -9,8 +9,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Yoeunes\Larafast\Middlewares\BlacklistRoutes;
 use Yoeunes\Larafast\Traits\BlacklistTrait;
 use Yoeunes\Larafast\Traits\EntityTrait;
-use Yoeunes\Larafast\Traits\PolicyTrait;
 use Yoeunes\Larafast\Traits\JobTrait;
+use Yoeunes\Larafast\Traits\PolicyTrait;
 
 class Controller extends BaseController
 {
