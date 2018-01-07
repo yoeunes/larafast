@@ -85,7 +85,7 @@ class WebControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_store_data_to_datatabse()
+    public function it_store_data_to_database()
     {
         $data = ['title' => 'laravel test store method', 'subject' => 'php'];
 
@@ -99,7 +99,7 @@ class WebControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_return_validation_errors()
+    public function it_return_store_validation_errors()
     {
         /** @var TestResponse $result */
         $response = $this->post('/lessons');
@@ -114,5 +114,65 @@ class WebControllerTest extends TestCase
         $exception = $response->exception;
         $expected = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
         $this->assertEquals($expected, $exception->errors());
+    }
+
+    /** @test */
+    public function it_update_lesson_in_database()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        $data = ['title' => 'new title', 'subject' => 'new subject'];
+
+        /** @var TestResponse $result */
+        $response = $this->put('/lessons/'.$lesson->id, $data);
+
+        $response->isRedirection();
+        $response->assertSee('<title>Redirecting to http://localhost</title>');
+        $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
+        $this->assertDatabaseHas(Lesson::TABLE, array_merge(['id' => $lesson->id], $data));
+    }
+
+    /** @test */
+    public function it_return_404_when_lesson_not_exists()
+    {
+        $data = ['title' => 'new title', 'subject' => 'new subject'];
+
+        /** @var TestResponse $result */
+        $response = $this->put('/lessons/9', $data);
+        $response->isNotFound();
+        $response->assertSeeText('Sorry, the page you are looking for could not be found.');
+    }
+
+    /** @test */
+    public function it_return_update_validation_errors()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        /** @var TestResponse $result */
+        $response = $this->put('/lessons/'.$lesson->id);
+
+        $response->isRedirection();
+        $response->assertSee('<title>Redirecting to http://localhost</title>');
+
+        $this->assertInstanceOf(\Illuminate\Validation\ValidationException::class, $response->exception);
+        $this->assertEquals('The given data was invalid.', $response->exception->getMessage());
+
+        /** @var \Illuminate\Validation\ValidationException $exception */
+        $exception = $response->exception;
+        $expected = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
+        $this->assertEquals($expected, $exception->errors());
+    }
+
+    /** @test */
+    public function it_delete_lesson_from_database()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        /** @var TestResponse $result */
+        $response = $this->delete('/lessons/'.$lesson->id);
+        $response->isRedirection();
+        $response->assertSee('<title>Redirecting to http://localhost</title>');
+        $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
+        $this->assertDatabaseMissing(Lesson::TABLE, ['id' => $lesson->id]);
     }
 }

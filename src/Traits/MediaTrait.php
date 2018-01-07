@@ -12,9 +12,6 @@ trait MediaTrait
     use HasMediaTrait;
 
     /** @var array */
-    protected $files = [];
-
-    /** @var array */
     protected $thumbSize = [
         'width'  => 100,
         'height' => 100,
@@ -63,25 +60,5 @@ trait MediaTrait
                 ->optimize();
         } catch (InvalidManipulation $e) {
         }
-    }
-
-    /**
-     * @return array
-     */
-    public function getFiles(): array
-    {
-        return $this->files;
-    }
-
-    /**
-     * @param array $files
-     *
-     * @return $this
-     */
-    public function setFiles(array $files)
-    {
-        $this->files = $files;
-
-        return $this;
     }
 }

@@ -5,6 +5,7 @@ namespace Yoeunes\Larafast\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Yoeunes\Larafast\Traits\BulkTrait;
 use Yoeunes\Larafast\Traits\ExcelTrait;
+use Yoeunes\Larafast\Traits\FilesTrait;
 use Yoeunes\Larafast\Traits\MediaTrait;
 use Yoeunes\Larafast\Traits\ModelTrait;
 use Yoeunes\Larafast\Traits\ValidationTrait;
@@ -16,7 +17,7 @@ use Yoeunes\Larafast\Traits\ValidationTrait;
  */
 class Entity extends Model
 {
-    use ModelTrait, MediaTrait, ValidationTrait, ExcelTrait, BulkTrait;
+    use ModelTrait, ValidationTrait, FilesTrait;
 
     const DEFAULT_IMAGE = 'https://placehold.it/100x100';
 }
