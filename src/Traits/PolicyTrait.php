@@ -2,6 +2,7 @@
 
 namespace Yoeunes\Larafast\Traits;
 
+use function get_class;
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Policies\DefaultPolicy;
 use Yoeunes\Larafast\Policies\Policy;
@@ -57,6 +58,11 @@ trait PolicyTrait
         }
 
         return $this->guessPolicyFromEntityName();
+    }
+
+    public function getPolicyName()
+    {
+        return get_class($this->getPolicy());
     }
 
     /**

@@ -12,6 +12,7 @@ use Yoeunes\Larafast\Traits\BlacklistTrait;
 use Yoeunes\Larafast\Traits\EntityTrait;
 use Yoeunes\Larafast\Traits\JobTrait;
 use Yoeunes\Larafast\Traits\PolicyTrait;
+use Illuminate\Support\Facades\Gate;
 
 class Controller extends BaseController
 {
@@ -20,5 +21,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->middleware(BlacklistRoutes::class);
+
+        Gate::policy($this->entityName(), $this->getPolicyName());
     }
 }
