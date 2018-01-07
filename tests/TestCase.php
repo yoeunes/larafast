@@ -13,7 +13,6 @@ use Spatie\Permission\Models\Role;
 use Yoeunes\Larafast\LarafastServiceProvider;
 use Yoeunes\Larafast\Tests\Stubs\Entities\User;
 use Yoeunes\Larafast\Tests\Stubs\Providers\AppServiceProvider;
-use Yoeunes\Larafast\Tests\Stubs\Providers\AuthServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -21,7 +20,6 @@ class TestCase extends BaseTestCase
     {
         return [
             AppServiceProvider::class,
-            AuthServiceProvider::class,
             LarafastServiceProvider::class,
         ];
     }
