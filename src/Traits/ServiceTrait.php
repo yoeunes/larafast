@@ -3,7 +3,6 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Policies\Policy;
 use Yoeunes\Larafast\Services\DefaultService;
 use Yoeunes\Larafast\Services\Service;
 
@@ -27,12 +26,10 @@ trait ServiceTrait
 
                 $default->setEntity($this->getEntity());
 
-                $default->setPolicy($this->getPolicy());
-
                 return $default;
             }
 
-            return new DefaultService($this->getEntity(), $this->getPolicy());
+            return new DefaultService($this->getEntity());
         }
     }
 
@@ -46,10 +43,6 @@ trait ServiceTrait
      */
     abstract public function getEntity(): Entity;
 
-    /**
-     * @return Policy
-     */
-    abstract public function getPolicy();
 
     /**
      * @return Service
