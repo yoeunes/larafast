@@ -2,6 +2,8 @@
 
 namespace Yoeunes\Larafast\Traits;
 
+use Yoeunes\Larafast\Policies\Policy;
+
 trait AbilityTrait
 {
     protected $abilityMap = [];
@@ -40,4 +42,32 @@ trait AbilityTrait
 
         return $this;
     }
+
+    public function getPermission(string $method)
+    {
+        return array_key_exists($method, $map = $this->getAbilityMap()) ? $map[$method] : $method;
+    }
+
+    /**
+     * @param string $function
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function allow(string $function)
+    {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
+            $this->authorize($this->getPermission($function), $this->entityName());
+        }
+    }
+
+    /**
+     * Authorize a given action for the current user.
+     *
+     * @param  mixed  $ability
+     * @param  mixed|array  $arguments
+     * @return \Illuminate\Auth\Access\Response
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public abstract function authorize($ability, $arguments = []);
 }

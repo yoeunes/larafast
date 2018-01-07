@@ -22,6 +22,6 @@ class Controller extends BaseController
     {
         $this->middleware(BlacklistRoutes::class);
 
-        Gate::policy($this->entityName(), $this->getPolicyName());
+        Gate::policy($this->entityName(), $this->getPolicy());
     }
 }

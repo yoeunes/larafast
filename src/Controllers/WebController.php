@@ -24,11 +24,6 @@ class WebController extends Controller
         $this->middleware(['web', UriSessionForWebRoutes::class]);
     }
 
-    public function getPermission(string $method)
-    {
-        return array_key_exists($method, $map = $this->getAbilityMap()) ? $map[$method] : $method;
-    }
-
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -36,7 +31,7 @@ class WebController extends Controller
      */
     public function index()
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->entityName());
+        $this->allow(__FUNCTION__);
 
         return $this->getDataTable()->addScope($this->getDataTableScope())->render($this->getView(__FUNCTION__));
     }
@@ -48,7 +43,7 @@ class WebController extends Controller
      */
     public function create()
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->entityName());
+        $this->allow(__FUNCTION__);
 
         return view($this->getView(__FUNCTION__));
     }
@@ -58,7 +53,7 @@ class WebController extends Controller
      */
     public function store()
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->entityName());
+        $this->allow(__FUNCTION__);
 
         request()->validate($this->getEntity()->getRules(__FUNCTION__), $this->getEntity()->getMessages());
 
@@ -80,7 +75,7 @@ class WebController extends Controller
      */
     public function edit(int $id)
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->getEntity());
+        $this->allow(__FUNCTION__);
 
         $entity = $this->getEntity()->findOrFail($id);
 
@@ -106,7 +101,7 @@ class WebController extends Controller
      */
     public function update(int $id)
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->getEntity());
+        $this->allow(__FUNCTION__);
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
@@ -130,7 +125,7 @@ class WebController extends Controller
      */
     public function destroy(int $id)
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->getEntity());
+        $this->allow(__FUNCTION__);
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
@@ -149,7 +144,7 @@ class WebController extends Controller
      */
     public function excelCreate()
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->entityName());
+        $this->allow(__FUNCTION__);
 
         return view($this->getView(__FUNCTION__));
     }
@@ -161,7 +156,7 @@ class WebController extends Controller
      */
     public function excelStore()
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->entityName());
+        $this->allow(__FUNCTION__);
 
         if (!request()->hasFile('excel')) {
             return back();
@@ -189,7 +184,7 @@ class WebController extends Controller
      */
     public function excelDownload()
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->entityName());
+        $this->allow(__FUNCTION__);
 
         $records = $this->getEntity()->get()->toArray();
         $table = $this->getEntity()->getTable();
@@ -210,7 +205,7 @@ class WebController extends Controller
      */
     public function activate(int $id)
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->getEntity());
+        $this->allow(__FUNCTION__);
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
@@ -231,7 +226,7 @@ class WebController extends Controller
      */
     public function deactivate(int $id)
     {
-        $this->authorize($this->getPermission(__FUNCTION__), $this->getEntity());
+        $this->allow(__FUNCTION__);
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);

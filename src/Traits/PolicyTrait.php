@@ -2,17 +2,15 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Policies\DefaultPolicy;
 use Yoeunes\Larafast\Policies\Policy;
 
 trait PolicyTrait
 {
-    /** @var Policy */
+    /** @var string */
     protected $policy;
 
     /**
-     * @return Policy
+     * @return string
      */
     private function guessPolicyFromEntityName()
     {
@@ -21,16 +19,11 @@ trait PolicyTrait
             if (class_exists($policy)) {
                 $this->policy = $policy;
 
-                /** @var Policy $default */
-                $default = new $policy();
-
-                $default->setEntity($this->getEntity());
-
-                return $default;
+                return $policy;
             }
-
-            return new DefaultPolicy($this->getEntity());
         }
+
+        return '';
     }
 
     /**
@@ -39,37 +32,27 @@ trait PolicyTrait
     abstract public function entityBaseName(): string;
 
     /**
-     * @return Entity
-     */
-    abstract public function getEntity(): Entity;
-
-    /**
-     * @return Policy
+     * @return string
      */
     public function getPolicy()
     {
         if ($this->policy instanceof Policy) {
-            return $this->policy;
+            return get_class($this->policy);
         }
 
         if (is_a($this->policy, Policy::class, true)) {
-            return new $this->policy();
+            return $this->policy;
         }
 
         return $this->guessPolicyFromEntityName();
     }
 
-    public function getPolicyName()
-    {
-        return get_class($this->getPolicy());
-    }
-
     /**
-     * @param Policy $policy
+     * @param string $policy
      *
      * @return $this
      */
-    public function setPolicy(Policy $policy = null)
+    public function setPolicy(string $policy = '')
     {
         $this->policy = $policy;
 
