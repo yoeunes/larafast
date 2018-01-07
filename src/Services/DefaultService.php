@@ -11,7 +11,7 @@ class DefaultService extends Service
      * DefaultService constructor.
      *
      * @param Entity $entity
-     * @param Gate $gate
+     * @param Gate   $gate
      */
     public function __construct(Entity $entity, Gate $gate = null)
     {

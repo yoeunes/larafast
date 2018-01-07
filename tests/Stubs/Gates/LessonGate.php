@@ -6,5 +6,4 @@ use Yoeunes\Larafast\Gates\Gate;
 
 class LessonGate extends Gate
 {
-
 }
