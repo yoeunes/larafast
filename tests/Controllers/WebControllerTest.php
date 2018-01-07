@@ -112,7 +112,7 @@ class WebControllerTest extends TestCase
 
         /** @var \Illuminate\Validation\ValidationException $exception */
         $exception = $response->exception;
-        $expected  = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
+        $expected = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
         $this->assertEquals($expected, $exception->errors());
     }
 }
