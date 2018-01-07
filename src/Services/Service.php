@@ -5,13 +5,13 @@ namespace Yoeunes\Larafast\Services;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Gates\Gate;
+use Yoeunes\Larafast\Policies\Policy;
 use Yoeunes\Larafast\Traits\EntityTrait;
-use Yoeunes\Larafast\Traits\GateTrait;
+use Yoeunes\Larafast\Traits\PolicyTrait;
 
 class Service
 {
-    use EntityTrait, GateTrait, AuthorizesRequests;
+    use EntityTrait, PolicyTrait, AuthorizesRequests;
 
     /**
      * @param array $attributes
@@ -22,7 +22,7 @@ class Service
      */
     public function store(array $attributes = [])
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -55,7 +55,7 @@ class Service
      */
     public function update(Entity $entity, array $attributes = [])
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -91,7 +91,7 @@ class Service
      */
     public function destroy(Entity $entity)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -107,7 +107,7 @@ class Service
      */
     public function activate(Entity $entity)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -123,7 +123,7 @@ class Service
      */
     public function deactivate(Entity $entity)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 

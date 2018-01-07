@@ -6,7 +6,7 @@ return [
     'datatable_namespace'          => 'App\\DataTables',
     'datatable_scope_namespace'    => 'App\\DataTables\\Scopes',
     'jobs_namespace'               => 'App\\Jobs',
-    'gates_namespace'              => 'App\\Gates',
+    'policies_namespace'           => 'App\\Policies',
     'services_namespace'           => 'App\\Services',
     'transformers_namespace'       => 'App\\Transformers',
     'views_path'                   => 'larafast',

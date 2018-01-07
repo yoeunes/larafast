@@ -9,12 +9,12 @@ use Illuminate\Routing\Controller as BaseController;
 use Yoeunes\Larafast\Middlewares\BlacklistRoutes;
 use Yoeunes\Larafast\Traits\BlacklistTrait;
 use Yoeunes\Larafast\Traits\EntityTrait;
-use Yoeunes\Larafast\Traits\GateTrait;
+use Yoeunes\Larafast\Traits\PolicyTrait;
 use Yoeunes\Larafast\Traits\JobTrait;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, GateTrait, JobTrait, BlacklistTrait;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, PolicyTrait, JobTrait, BlacklistTrait;
 
     public function __construct()
     {

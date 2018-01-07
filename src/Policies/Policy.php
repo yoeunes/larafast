@@ -1,11 +1,11 @@
 <?php
 
-namespace Yoeunes\Larafast\Gates;
+namespace Yoeunes\Larafast\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Yoeunes\Larafast\Traits\EntityTrait;
 
-class Gate
+class Policy
 {
     use EntityTrait, HandlesAuthorization;
 }
