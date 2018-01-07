@@ -11,7 +11,7 @@ class DefaultService extends Service
      * DefaultService constructor.
      *
      * @param Entity $entity
-     * @param Policy   $policy
+     * @param Policy $policy
      */
     public function __construct(Entity $entity, Policy $policy = null)
     {
