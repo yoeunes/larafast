@@ -43,7 +43,6 @@ trait ServiceTrait
      */
     abstract public function getEntity(): Entity;
 
-
     /**
      * @return Service
      */
