@@ -13,7 +13,7 @@ class DefaultService extends Service
      * @param Entity $entity
      * @param Policy $policy
      */
-    public function __construct(Entity $entity, Policy $policy)
+    public function __construct(Entity $entity, Policy $policy = null)
     {
         $this->setEntity($entity);
         $this->setPolicy($policy);

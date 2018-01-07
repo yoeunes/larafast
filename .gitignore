@@ -4,4 +4,5 @@ vendor/
 composer.phar
 composer.lock
 coverage.clover
+phpunit.phar
 tests/Stubs/storage/framework/views/*

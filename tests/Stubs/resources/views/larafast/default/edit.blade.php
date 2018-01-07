@@ -9,8 +9,8 @@
             <i class="fa fa-plus-circle"></i> {{ preg_replace('/\./', ' ', app('router')->getCurrentRoute()->getName()) }}
         </div>
         <div class="global-body">
-            {{ Form::open(['route' => preg_replace('/\.create/', '.store', app('router')->getCurrentRoute()->getName()), 'files' => true]) }}
-            @include(getForm())
+            {{ Form::model($entity, ['route' => [preg_replace('/\.edit/', '.update', app('router')->getCurrentRoute()->getName()), $entity->id], 'method' => 'PUT', 'files' => true]) }}
+            @include(getForm('edit'))
             @include('larafast.default.save_and_reset_buttons')
             {{ Form::close() }}
         </div>

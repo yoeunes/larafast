@@ -30,7 +30,7 @@ trait PolicyTrait
     /**
      * @return Policy
      */
-    public function getPolicy(): Policy
+    public function getPolicy()
     {
         if ($this->policy instanceof Policy || is_a($this->policy, Policy::class, true)) {
             return $this->policy;
@@ -44,7 +44,7 @@ trait PolicyTrait
      *
      * @return $this
      */
-    public function setPolicy(Policy $policy)
+    public function setPolicy(Policy $policy = null)
     {
         $this->policy = $policy;
 

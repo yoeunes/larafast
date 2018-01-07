@@ -3,6 +3,7 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 trait ModelTrait
 {
@@ -24,22 +25,6 @@ trait ModelTrait
     public function matches(self $model): bool
     {
         return $this->id === $model->id;
-    }
-
-    /**
-     * @return bool
-     */
-    public function active(): bool
-    {
-        return (bool) $this->active;
-    }
-
-    /**
-     * @return bool
-     */
-    public function notActive(): bool
-    {
-        return !$this->active();
     }
 
     /**
@@ -74,17 +59,17 @@ trait ModelTrait
     /**
      * @return mixed
      */
-    public function deactivateAll()
+    public static function deactivateAll()
     {
-        return DB::table(self::TABLE)->where('active', '=', 1)->update(['active' => 0]);
+        return DB::table(static::TABLE)->where('active', '=', 1)->update(['active' => 0]);
     }
 
     /**
      * @return mixed
      */
-    public function activateAll()
+    public static function activateAll()
     {
-        return DB::table(self::TABLE)->where('active', '=', 0)->update(['active' => 1]);
+        return DB::table(static::TABLE)->where('active', '=', 0)->update(['active' => 1]);
     }
 
     /**

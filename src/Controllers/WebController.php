@@ -70,7 +70,7 @@ class WebController extends Controller
             return success('L\'Entité a été ajoutée avec succès');
         }
 
-        return error('Une erreur s"est produite veuillez réessayer ultérieurement');
+        return error('Une erreur s\'est produite veuillez réessayer ultérieurement');
     }
 
     /**

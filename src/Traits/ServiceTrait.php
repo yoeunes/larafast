@@ -49,7 +49,7 @@ trait ServiceTrait
     /**
      * @return Policy
      */
-    abstract public function getPolicy(): Policy;
+    abstract public function getPolicy();
 
     /**
      * @return Service

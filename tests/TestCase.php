@@ -69,6 +69,7 @@ class TestCase extends BaseTestCase
             $table->increments('id');
             $table->string('title');
             $table->string('subject');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
 
@@ -77,7 +78,7 @@ class TestCase extends BaseTestCase
         $kernel->pushMiddleware(\Illuminate\Session\Middleware\StartSession::class);
     }
 
-    protected function showError(TestResponse $response)
+    protected function showResponse(TestResponse $response)
     {
         dump($response->content());
         dd($response->exception ? $response->exception->getMessage() : null);

@@ -15,7 +15,7 @@ class DataTable extends BaseDataTable
 
     protected $columns = [];
 
-    protected $datatableAction = 'admin.default.action';
+    protected $datatableAction = 'larafast.default.action';
 
     /**
      * Build DataTable class.

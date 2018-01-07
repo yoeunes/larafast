@@ -50,6 +50,7 @@ class LarafastServiceProvider extends ServiceProvider
         $this->app->register(\Spatie\MediaLibrary\MediaLibraryServiceProvider::class);
         $this->app->register(\Spatie\Permission\PermissionServiceProvider::class);
         $this->app->register(\Yajra\DataTables\DataTablesServiceProvider::class);
+        $this->app->register(\Yajra\DataTables\HtmlServiceProvider::class);
     }
 
     private function registerAliases()
