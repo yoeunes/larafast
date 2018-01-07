@@ -2,7 +2,6 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use function get_class;
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Policies\DefaultPolicy;
 use Yoeunes\Larafast\Policies\Policy;
