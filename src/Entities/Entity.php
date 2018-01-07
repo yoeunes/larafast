@@ -3,10 +3,7 @@
 namespace Yoeunes\Larafast\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Yoeunes\Larafast\Traits\BulkTrait;
-use Yoeunes\Larafast\Traits\ExcelTrait;
 use Yoeunes\Larafast\Traits\FilesTrait;
-use Yoeunes\Larafast\Traits\MediaTrait;
 use Yoeunes\Larafast\Traits\ModelTrait;
 use Yoeunes\Larafast\Traits\ValidationTrait;
 
