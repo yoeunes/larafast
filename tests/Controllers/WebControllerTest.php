@@ -13,6 +13,8 @@ class WebControllerTest extends TestCase
     {
         parent::setUp();
 
+        auth()->login($this->adminUser);
+
         /** @var \Illuminate\Routing\Router $router */
         $router = $this->app['router'];
 
@@ -26,7 +28,7 @@ class WebControllerTest extends TestCase
 
         /** @var TestResponse $result */
         $response = $this->get('/lessons');
-
+$this->showResponse($response);
         $response->assertSuccessful();
         $response->assertSee('<title>lessons index |  Larafast</title>');
         $response->assertSee('<table  class="table table-bordered" id="dataTableBuilder"><thead><tr><th >Id</th><th >Title</th><th >Subject</th><th >Active</th><th >Created At</th><th >Updated At</th><th  width="80px">Action</th></tr></thead></table>');

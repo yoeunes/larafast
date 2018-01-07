@@ -6,7 +6,6 @@ use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Collections\RowCollection;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Gates\Gate;
 use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
 use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
 use Yoeunes\Larafast\Traits\DataTableScopeTrait;
@@ -18,11 +17,44 @@ class WebController extends Controller
 {
     use ViewTrait, DataTableTrait, DataTableScopeTrait, ServiceTrait;
 
+    protected $abilityMap = [];
+
+    protected function getAbilityMap()
+    {
+        return array_merge([
+            'index'         => 'view',
+            'show'          => 'view',
+            'excelDownload' => 'view',
+
+            'create'        => 'create',
+            'store'         => 'create',
+            'excelCreate'   => 'create',
+            'excelStore'    => 'create',
+
+            'edit'          => 'update',
+            'update'        => 'update',
+            'activate'      => 'update',
+            'deactivate'    => 'update',
+
+            'destroy'       => 'delete',
+        ], $this->abilityMap);
+    }
+
     public function __construct()
     {
         parent::__construct();
 
         $this->middleware(['web', UriSessionForWebRoutes::class]);
+    }
+
+    public function getPermission(string $method)
+    {
+        /** @var \Illuminate\Routing\Route $route */
+        $route = app('router')->getCurrentRoute();
+
+        return !array_key_exists($method, $map = $this->getAbilityMap())
+            ? preg_replace('/\./', ' ', $route->getName())
+            : preg_replace('/\.'.$method.'/', ' '.$map[$method], $route->getName());
     }
 
     /**
@@ -32,9 +64,7 @@ class WebController extends Controller
      */
     public function index()
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         return $this->getDataTable()->addScope($this->getDataTableScope())->render($this->getView(__FUNCTION__));
     }
@@ -46,9 +76,7 @@ class WebController extends Controller
      */
     public function create()
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         return view($this->getView(__FUNCTION__));
     }
@@ -58,11 +86,7 @@ class WebController extends Controller
      */
     public function store()
     {
-        dd($this->getGate());
-        if (is_a($this->getGate(), Gate::class, true)) {
-            die('ok');
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         request()->validate($this->getEntity()->getRules(__FUNCTION__), $this->getEntity()->getMessages());
 
@@ -84,9 +108,7 @@ class WebController extends Controller
      */
     public function edit(int $id)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         $entity = $this->getEntity()->findOrFail($id);
 
@@ -112,9 +134,7 @@ class WebController extends Controller
      */
     public function update(int $id)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
@@ -138,9 +158,7 @@ class WebController extends Controller
      */
     public function destroy(int $id)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
@@ -159,9 +177,7 @@ class WebController extends Controller
      */
     public function excelCreate()
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         return view($this->getView(__FUNCTION__));
     }
@@ -173,9 +189,7 @@ class WebController extends Controller
      */
     public function excelStore()
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         if (!request()->hasFile('excel')) {
             return back();
@@ -203,9 +217,7 @@ class WebController extends Controller
      */
     public function excelDownload()
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         $records = $this->getEntity()->get()->toArray();
         $table = $this->getEntity()->getTable();
@@ -226,9 +238,7 @@ class WebController extends Controller
      */
     public function activate(int $id)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
@@ -249,9 +259,7 @@ class WebController extends Controller
      */
     public function deactivate(int $id)
     {
-        if (is_a($this->getGate(), Gate::class, true)) {
-            $this->authorize(__FUNCTION__, $this->entityName());
-        }
+        $this->authorize($this->getPermission(__FUNCTION__));
 
         /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);

@@ -5,9 +5,13 @@ namespace Yoeunes\Larafast\Tests;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\Schema;
+use Laracasts\TestDummy\Factory;
 use Mockery;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Yoeunes\Larafast\LarafastServiceProvider;
+use Yoeunes\Larafast\Tests\Stubs\Entities\User;
 use Yoeunes\Larafast\Tests\Stubs\Providers\AppServiceProvider;
 
 class TestCase extends BaseTestCase
@@ -28,7 +32,35 @@ class TestCase extends BaseTestCase
         Schema::drop('model_has_permissions');
         Schema::drop('roles');
         Schema::drop('permissions');
+        Schema::drop('users');
         Mockery::close();
+    }
+
+    /** @var User $adminUser */
+    protected $adminUser;
+
+    /** @var User $normalUser */
+    protected $normalUser;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $adminRole = Factory::create(Role::class, ['name' => 'admin']);
+        $this->adminUser = Factory::create(User::class, ['name' => 'admin']);
+        $this->adminUser->assignRole($adminRole);
+
+        $normalRole = Factory::create(Role::class, ['name' => 'normal']);
+        $this->normalUser = Factory::create(User::class, ['name' => 'normal']);
+        $this->normalUser->assignRole($normalRole);
+
+        $view   = Factory::create(Permission::class, ['name' => 'lessons view']);
+        $create = Factory::create(Permission::class, ['name' => 'lessons create']);
+        $update = Factory::create(Permission::class, ['name' => 'lessons update']);
+        $delete = Factory::create(Permission::class, ['name' => 'lessons delete']);
+
+        $adminRole->givePermissionTo([$view, $create, $update, $delete]);
+        $normalRole->givePermissionTo([$view, $create]);
     }
 
     /**
@@ -57,6 +89,30 @@ class TestCase extends BaseTestCase
             'cache'    => false,
         ]);
 
+        $app['config']->set('auth', [
+            'defaults' => [
+                'guard' => 'web',
+                'passwords' => 'users',
+            ],
+            'guards' => [
+                'web' => [
+                    'driver' => 'session',
+                    'provider' => 'users',
+                ],
+
+                'api' => [
+                    'driver' => 'token',
+                    'provider' => 'users',
+                ],
+            ],
+            'providers'    => [
+                'users' => [
+                    'driver' => 'eloquent',
+                    'model' => \Yoeunes\Larafast\Tests\Stubs\Entities\User::class,
+                ]
+            ],
+        ]);
+
         $app['config']->set('larafast', [
             'entities_namespace'     => 'Yoeunes\\Larafast\\Tests\\Stubs\\Entities',
             'controllers_namespace'  => 'Yoeunes\\Larafast\\Tests\\Stubs\\Controllers',
@@ -75,6 +131,15 @@ class TestCase extends BaseTestCase
             $table->string('title');
             $table->string('subject');
             $table->boolean('active')->default(false);
+            $table->timestamps();
+        });
+
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
 
