@@ -61,14 +61,7 @@ trait ServiceTrait
         }
 
         if (is_a($this->service, Service::class, true)) {
-            /** @var Service $default */
-            $default = new $this->service();
-
-            $default->setEntity($this->getEntity());
-
-            $default->setPolicy($this->getPolicy());
-
-            return $default;
+            return new $this->service();
         }
 
         return $this->guessServiceFromEntityName();

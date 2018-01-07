@@ -91,7 +91,7 @@ class WebControllerTest extends TestCase
 
         /** @var TestResponse $result */
         $response = $this->post('/lessons', $data);
-
+        $this->showResponse($response);
         $response->isRedirection();
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
@@ -139,6 +139,7 @@ class WebControllerTest extends TestCase
 
         /** @var TestResponse $result */
         $response = $this->put('/lessons/9', $data);
+
         $response->isNotFound();
         $response->assertSeeText('Sorry, the page you are looking for could not be found.');
     }
@@ -170,6 +171,7 @@ class WebControllerTest extends TestCase
 
         /** @var TestResponse $result */
         $response = $this->delete('/lessons/'.$lesson->id);
+
         $response->isRedirection();
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');

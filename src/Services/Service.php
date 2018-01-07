@@ -22,7 +22,7 @@ class Service
      */
     public function store(array $attributes = [])
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -55,7 +55,7 @@ class Service
      */
     public function update(Entity $entity, array $attributes = [])
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -91,7 +91,7 @@ class Service
      */
     public function destroy(Entity $entity)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -107,7 +107,7 @@ class Service
      */
     public function activate(Entity $entity)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -123,7 +123,7 @@ class Service
      */
     public function deactivate(Entity $entity)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 

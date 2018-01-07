@@ -32,7 +32,7 @@ class WebController extends Controller
      */
     public function index()
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -46,7 +46,7 @@ class WebController extends Controller
      */
     public function create()
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -58,7 +58,9 @@ class WebController extends Controller
      */
     public function store()
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        dd($this->getPolicy());
+        if (is_a($this->getPolicy(), Policy::class, true)) {
+            die('ok');
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -82,7 +84,7 @@ class WebController extends Controller
      */
     public function edit(int $id)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -110,7 +112,7 @@ class WebController extends Controller
      */
     public function update(int $id)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -136,7 +138,7 @@ class WebController extends Controller
      */
     public function destroy(int $id)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -157,7 +159,7 @@ class WebController extends Controller
      */
     public function excelCreate()
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -171,7 +173,7 @@ class WebController extends Controller
      */
     public function excelStore()
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -201,7 +203,7 @@ class WebController extends Controller
      */
     public function excelDownload()
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -224,7 +226,7 @@ class WebController extends Controller
      */
     public function activate(int $id)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -247,7 +249,7 @@ class WebController extends Controller
      */
     public function deactivate(int $id)
     {
-        if (is_a($this->policy, Policy::class, true)) {
+        if (is_a($this->getPolicy(), Policy::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
