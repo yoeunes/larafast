@@ -1,13 +1,13 @@
 <?php
 
-namespace Yoeunes\Larafast\Policies;
+namespace Yoeunes\Larafast\Gates;
 
 use Yoeunes\Larafast\Entities\Entity;
 
-class DefaultPolicy extends Policy
+class DefaultGate extends Gate
 {
     /**
-     * DefaultPolicy constructor.
+     * DefaultGate constructor.
      *
      * @param Entity $entity
      */

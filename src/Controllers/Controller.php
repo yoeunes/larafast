@@ -10,11 +10,11 @@ use Yoeunes\Larafast\Middlewares\BlacklistRoutes;
 use Yoeunes\Larafast\Traits\BlacklistTrait;
 use Yoeunes\Larafast\Traits\EntityTrait;
 use Yoeunes\Larafast\Traits\JobTrait;
-use Yoeunes\Larafast\Traits\PolicyTrait;
+use Yoeunes\Larafast\Traits\GateTrait;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, PolicyTrait, JobTrait, BlacklistTrait;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, GateTrait, JobTrait, BlacklistTrait;
 
     public function __construct()
     {

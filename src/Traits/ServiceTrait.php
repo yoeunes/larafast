@@ -3,7 +3,7 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Policies\Policy;
+use Yoeunes\Larafast\Gates\Gate;
 use Yoeunes\Larafast\Services\DefaultService;
 use Yoeunes\Larafast\Services\Service;
 
@@ -27,12 +27,12 @@ trait ServiceTrait
 
                 $default->setEntity($this->getEntity());
 
-                $default->setPolicy($this->getPolicy());
+                $default->setGate($this->getGate());
 
                 return $default;
             }
 
-            return new DefaultService($this->getEntity(), $this->getPolicy());
+            return new DefaultService($this->getEntity(), $this->getGate());
         }
     }
 
@@ -47,9 +47,9 @@ trait ServiceTrait
     abstract public function getEntity(): Entity;
 
     /**
-     * @return Policy
+     * @return Gate
      */
-    abstract public function getPolicy();
+    abstract public function getGate();
 
     /**
      * @return Service

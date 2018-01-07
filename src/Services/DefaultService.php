@@ -3,7 +3,7 @@
 namespace Yoeunes\Larafast\Services;
 
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Policies\Policy;
+use Yoeunes\Larafast\Gates\Gate;
 
 class DefaultService extends Service
 {
@@ -11,11 +11,11 @@ class DefaultService extends Service
      * DefaultService constructor.
      *
      * @param Entity $entity
-     * @param Policy $policy
+     * @param Gate $gate
      */
-    public function __construct(Entity $entity, Policy $policy = null)
+    public function __construct(Entity $entity, Gate $gate = null)
     {
         $this->setEntity($entity);
-        $this->setPolicy($policy);
+        $this->setGate($gate);
     }
 }

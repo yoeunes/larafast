@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
 use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
-use Yoeunes\Larafast\Policies\Policy;
+use Yoeunes\Larafast\Gates\Gate;
 use Yoeunes\Larafast\Traits\DataTableScopeTrait;
 use Yoeunes\Larafast\Traits\DataTableTrait;
 use Yoeunes\Larafast\Traits\ServiceTrait;
@@ -32,7 +32,7 @@ class WebController extends Controller
      */
     public function index()
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -46,7 +46,7 @@ class WebController extends Controller
      */
     public function create()
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -58,8 +58,8 @@ class WebController extends Controller
      */
     public function store()
     {
-        dd($this->getPolicy());
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        dd($this->getGate());
+        if (is_a($this->getGate(), Gate::class, true)) {
             die('ok');
             $this->authorize(__FUNCTION__, $this->entityName());
         }
@@ -84,7 +84,7 @@ class WebController extends Controller
      */
     public function edit(int $id)
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -112,7 +112,7 @@ class WebController extends Controller
      */
     public function update(int $id)
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -138,7 +138,7 @@ class WebController extends Controller
      */
     public function destroy(int $id)
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -159,7 +159,7 @@ class WebController extends Controller
      */
     public function excelCreate()
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -173,7 +173,7 @@ class WebController extends Controller
      */
     public function excelStore()
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -203,7 +203,7 @@ class WebController extends Controller
      */
     public function excelDownload()
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -226,7 +226,7 @@ class WebController extends Controller
      */
     public function activate(int $id)
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
@@ -249,7 +249,7 @@ class WebController extends Controller
      */
     public function deactivate(int $id)
     {
-        if (is_a($this->getPolicy(), Policy::class, true)) {
+        if (is_a($this->getGate(), Gate::class, true)) {
             $this->authorize(__FUNCTION__, $this->entityName());
         }
 
