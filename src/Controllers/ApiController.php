@@ -53,7 +53,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @param int           $id
+     * @param int $id
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -126,10 +126,9 @@ class ApiController extends Controller
      * @param $id
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      *
      * @return \Illuminate\Http\JsonResponse
-     *
-     * @throws \Exception
      */
     public function destroy(int $id)
     {
