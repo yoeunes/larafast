@@ -4,6 +4,7 @@ namespace Yoeunes\Larafast\Tests\Controllers;
 
 use Illuminate\Foundation\Testing\TestResponse;
 use Laracasts\TestDummy\Factory;
+use Symfony\Component\HttpFoundation\Response;
 use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 use Yoeunes\Larafast\Tests\TestCase;
 
@@ -170,6 +171,39 @@ class WebControllerTest extends TestCase
     public function it_delete_lesson_from_database()
     {
         $lesson = Factory::create(Lesson::class);
+
+        /** @var TestResponse $result */
+        $response = $this->delete('/lessons/'.$lesson->id);
+
+        $response->isRedirection();
+        $response->assertSee('<title>Redirecting to http://localhost</title>');
+        $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
+        $this->assertDatabaseMissing(Lesson::TABLE, ['id' => $lesson->id]);
+    }
+
+    /** @test */
+    public function it_deny_normal_user_from_updating_a_lesson()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        $data = ['title' => 'new title', 'subject' => 'new subject'];
+
+        auth()->login($this->normalUser);
+
+        /** @var TestResponse $result */
+        $response = $this->put('/lessons/'.$lesson->id, $data);
+
+        $this->assertInstanceOf(\Illuminate\Auth\Access\AuthorizationException::class, $response->exception);
+        $this->assertEquals('This action is unauthorized.', $response->exception->getMessage());
+        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->exception->getCode());
+    }
+
+    /** @test */
+    public function it_allow_normal_user_for_whitelist_routes()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        auth()->login($this->normalUser);
 
         /** @var TestResponse $result */
         $response = $this->delete('/lessons/'.$lesson->id);

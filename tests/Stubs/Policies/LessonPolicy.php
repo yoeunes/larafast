@@ -8,4 +8,6 @@ use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 class LessonPolicy extends Policy
 {
     protected $entity = Lesson::class;
+
+    protected $allowed = ['delete'];
 }
