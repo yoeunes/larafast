@@ -23,11 +23,11 @@
         "illuminate/view": "^5.5",
         "laravel/passport": "^4.0",
         "laravelcollective/html": "^5.5",
-        "oriceon/toastr-5-laravel": "dev-master",
         "spatie/laravel-fractal": "^5.3",
         "spatie/laravel-medialibrary": "^6.6",
         "spatie/laravel-permission": "^2.7",
-        "yajra/laravel-datatables": "^1.0"
+        "yajra/laravel-datatables": "^1.0",
+        "yoeunes/toastr": "^1.0"
     },
     "require-dev"      : {
         "mockery/mockery"    : "^1.0",
