@@ -2,16 +2,16 @@
 
 namespace Yoeunes\Larafast\Tests;
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Foundation\Testing\TestResponse;
-use Illuminate\Support\Facades\Schema;
-use Laracasts\TestDummy\Factory;
 use Mockery;
-use Orchestra\Testbench\TestCase as BaseTestCase;
-use Spatie\Permission\Models\Permission;
+use Laracasts\TestDummy\Factory;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Schema\Blueprint;
 use Yoeunes\Larafast\LarafastServiceProvider;
+use Illuminate\Foundation\Testing\TestResponse;
 use Yoeunes\Larafast\Tests\Stubs\Entities\User;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 use Yoeunes\Larafast\Tests\Stubs\Providers\AppServiceProvider;
 
 class TestCase extends BaseTestCase
@@ -46,15 +46,15 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $adminRole = Factory::create(Role::class, ['name' => 'admin']);
+        $adminRole       = Factory::create(Role::class, ['name' => 'admin']);
         $this->adminUser = Factory::create(User::class, ['name' => 'admin']);
         $this->adminUser->assignRole($adminRole);
 
-        $normalRole = Factory::create(Role::class, ['name' => 'normal']);
+        $normalRole       = Factory::create(Role::class, ['name' => 'normal']);
         $this->normalUser = Factory::create(User::class, ['name' => 'normal']);
         $this->normalUser->assignRole($normalRole);
 
-        $view = Factory::create(Permission::class, ['name' => 'lessons view']);
+        $view   = Factory::create(Permission::class, ['name' => 'lessons view']);
         $create = Factory::create(Permission::class, ['name' => 'lessons create']);
         $update = Factory::create(Permission::class, ['name' => 'lessons update']);
         $delete = Factory::create(Permission::class, ['name' => 'lessons delete']);

@@ -2,11 +2,11 @@
 
 namespace Yoeunes\Larafast\Tests\Controllers;
 
-use Illuminate\Foundation\Testing\TestResponse;
 use Laracasts\TestDummy\Factory;
-use Symfony\Component\HttpFoundation\Response;
-use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 use Yoeunes\Larafast\Tests\TestCase;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Foundation\Testing\TestResponse;
+use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 
 class ApiControllerTest extends TestCase
 {

@@ -3,11 +3,11 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Exception;
+use Illuminate\Support\Str;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 trait ResponseTrait
 {
@@ -38,7 +38,7 @@ trait ResponseTrait
             'status_code' => $this->statusCode,
         ];
 
-        if (!empty($data)) {
+        if (! empty($data)) {
             $error['data'] = $data;
         }
 
@@ -59,7 +59,7 @@ trait ResponseTrait
             'status_code' => $this->statusCode,
         ];
 
-        if (!empty($data)) {
+        if (! empty($data)) {
             $response['data'] = $data;
         }
 
@@ -169,7 +169,7 @@ trait ResponseTrait
         $exception_class = get_class($exception);
 
         if (array_key_exists($exception_class, config('larafast.exceptions'))) {
-            $method = config('larafast.exceptions')[$exception_class]['method'];
+            $method  = config('larafast.exceptions')[$exception_class]['method'];
             $message = config('larafast.exceptions')[$exception_class]['message'];
 
             return $this->{$method}($message);

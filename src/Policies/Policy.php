@@ -2,9 +2,9 @@
 
 namespace Yoeunes\Larafast\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Yoeunes\Larafast\Entities\User;
 use Yoeunes\Larafast\Traits\EntityTrait;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class Policy
 {
@@ -39,7 +39,7 @@ class Policy
      */
     private function authorize(string $function, User $user): bool
     {
-        if (!in_array($function, $this->allowed) && false === $user->can(str_plural(strtolower($this->entityBaseName())).' '.$function)) {
+        if (! in_array($function, $this->allowed) && false === $user->can(str_plural(strtolower($this->entityBaseName())).' '.$function)) {
             throw new \Illuminate\Auth\Access\AuthorizationException('This action is unauthorized.', 401);
         }
 

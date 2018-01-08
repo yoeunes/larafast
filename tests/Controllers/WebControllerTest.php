@@ -2,11 +2,11 @@
 
 namespace Yoeunes\Larafast\Tests\Controllers;
 
-use Illuminate\Foundation\Testing\TestResponse;
 use Laracasts\TestDummy\Factory;
-use Symfony\Component\HttpFoundation\Response;
-use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 use Yoeunes\Larafast\Tests\TestCase;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Foundation\Testing\TestResponse;
+use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 
 class WebControllerTest extends TestCase
 {
@@ -115,7 +115,7 @@ class WebControllerTest extends TestCase
 
         /** @var \Illuminate\Validation\ValidationException $exception */
         $exception = $response->exception;
-        $expected = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
+        $expected  = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
         $this->assertEquals($expected, $exception->errors());
     }
 
@@ -163,7 +163,7 @@ class WebControllerTest extends TestCase
 
         /** @var \Illuminate\Validation\ValidationException $exception */
         $exception = $response->exception;
-        $expected = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
+        $expected  = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
         $this->assertEquals($expected, $exception->errors());
     }
 

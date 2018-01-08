@@ -3,8 +3,8 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Services\DefaultService;
 use Yoeunes\Larafast\Services\Service;
+use Yoeunes\Larafast\Services\DefaultService;
 
 trait ServiceTrait
 {

@@ -1,6 +1,6 @@
 <?php
 
-if (!Route::hasMacro('resource_')) {
+if (! Route::hasMacro('resource_')) {
     Route::macro('resource_', function ($name, $controller, $options = []) {
         Route::get($name.'/activate/{id}', $controller.'@activate')->name($name.'.activate');
         Route::get($name.'/deactivate/{id}', $controller.'@deactivate')->name($name.'.deactivate');

@@ -2,8 +2,8 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Jobs\Job;
+use Yoeunes\Larafast\Entities\Entity;
 
 trait JobTrait
 {

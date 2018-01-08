@@ -3,13 +3,13 @@
 namespace Yoeunes\Larafast\Controllers;
 
 use Barryvdh\Cors\HandleCors;
-use Laravel\Passport\Http\Middleware\CreateFreshApiToken;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use League\Fractal\Serializer\JsonApiSerializer;
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Middlewares\ApiExceptionHandler;
 use Yoeunes\Larafast\Traits\ResponseTrait;
 use Yoeunes\Larafast\Traits\TransformerTrait;
+use League\Fractal\Serializer\JsonApiSerializer;
+use Yoeunes\Larafast\Middlewares\ApiExceptionHandler;
+use Laravel\Passport\Http\Middleware\CreateFreshApiToken;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class ApiController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace Yoeunes\Larafast\Traits;
 
+use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\DataTables\DataTable;
 use Yoeunes\Larafast\DataTables\DefaultDataTable;
-use Yoeunes\Larafast\Entities\Entity;
 
 trait DataTableTrait
 {

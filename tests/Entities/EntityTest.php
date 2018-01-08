@@ -3,8 +3,8 @@
 namespace Yoeunes\Larafast\Tests\Entities;
 
 use Laracasts\TestDummy\Factory;
-use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 use Yoeunes\Larafast\Tests\TestCase;
+use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 
 class EntityTest extends TestCase
 {

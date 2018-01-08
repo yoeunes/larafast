@@ -12,7 +12,7 @@ trait ExcelTrait
      */
     public function getExcelAttributes(): array
     {
-        return !empty($this->excelAttributes)
+        return ! empty($this->excelAttributes)
             ? $this->excelAttributes
             : array_fill_keys(array_keys(array_flip($this->fillable)), null);
     }
