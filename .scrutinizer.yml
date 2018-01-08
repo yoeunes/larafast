@@ -1,9 +1,9 @@
-before_commands:
-  - composer self-update
-  - composer install
-  - mkdir -p tests/Stubs/storage/framework/views/
-  - sudo chmod -R 777 tests/Stubs/storage/framework/views/
-  - composer update --prefer-source
+#before_commands:
+#  - composer self-update
+#  - composer install
+#  - mkdir -p tests/Stubs/storage/framework/views/
+#  - sudo chmod -R 777 tests/Stubs/storage/framework/views/
+#  - composer update --prefer-source
 
 checks:
     php:
@@ -57,16 +57,16 @@ tools:
         filter:
             paths: ["src/*", "tests/*"]
 
-build:
-    environment:
-        php: '7.0.6'
-    tests:
-        override:
-            -
-                command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                coverage:
-                    file: 'coverage.clover'
-                    format: 'clover'
+#build:
+#    environment:
+#        php: '7.0.6'
+#    tests:
+#        override:
+#            -
+#                command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
+#                coverage:
+#                    file: 'coverage.clover'
+#                    format: 'clover'
 
 filter:
     excluded_paths:
