@@ -17,7 +17,7 @@
 <script>
     window.Laravel = {!! json_encode(['csrfToken' => csrf_token() ]) !!};
 </script>
-{!! Toastr::render() !!}
+{!! app('toastr')->render() !!}
 @stack('scripts')
 </body>
 </html>

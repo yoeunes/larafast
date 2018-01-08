@@ -59,7 +59,6 @@ class LarafastServiceProvider extends ServiceProvider
             $loader->alias('Form', \Collective\Html\FormFacade::class);
             $loader->alias('Html', \Collective\Html\HtmlFacade::class);
             $loader->alias('Fractal', \Spatie\Fractal\FractalFacade::class);
-            $loader->alias('Toastr', \Yoeunes\Toastr\Facades\Toastr::class);
         }
     }
 }
