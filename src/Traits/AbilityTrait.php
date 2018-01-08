@@ -48,6 +48,7 @@ trait AbilityTrait
 
     /**
      * @param string $method
+     *
      * @return string
      */
     public function getPermission(string $method)
