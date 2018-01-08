@@ -10,7 +10,7 @@ class Policy
 {
     use EntityTrait, HandlesAuthorization;
 
-    protected $entity  = [];
+    protected $entity = [];
 
     protected $allowed = [];
 
