@@ -2,12 +2,12 @@
 
 namespace Yoeunes\Larafast\DataTables;
 
-use Illuminate\Support\Facades\Schema;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Services\DataTable as BaseDataTable;
 use Yoeunes\Larafast\Entities\Entity;
+use Illuminate\Support\Facades\Schema;
+use Yajra\DataTables\EloquentDataTable;
 use Yoeunes\Larafast\Traits\EntityTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Yajra\DataTables\Services\DataTable as BaseDataTable;
 
 class DataTable extends BaseDataTable
 {

@@ -2,10 +2,10 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use Illuminate\Support\Collection;
-use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Media;
+use Illuminate\Support\Collection;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\Image\Exceptions\InvalidManipulation;
 
 trait MediaTrait
 {

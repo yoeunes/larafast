@@ -3,8 +3,8 @@
 namespace Yoeunes\Larafast\Middlewares;
 
 use Closure;
-use Illuminate\Auth\Access\AuthorizationException;
 use Yoeunes\Larafast\Traits\ResponseTrait;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class ApiExceptionHandler
 {
@@ -24,7 +24,7 @@ class ApiExceptionHandler
     {
         $response = $next($request);
 
-        if (!empty($response->exception) && $request->expectsJson() && null !== ($json_response = $this->exception($response->exception))) {
+        if (! empty($response->exception) && $request->expectsJson() && null !== ($json_response = $this->exception($response->exception))) {
             return $json_response;
         }
 

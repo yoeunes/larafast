@@ -2,10 +2,10 @@
 
 namespace Yoeunes\Larafast\Services;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Traits\EntityTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Service
 {
@@ -20,11 +20,11 @@ class Service
     {
         $entity = $this->getEntity()->create(array_diff_key($attributes, array_flip($this->getEntity()->getFiles())));
 
-        if (!$this->getEntity() instanceof HasMedia) {
+        if (! $this->getEntity() instanceof HasMedia) {
             return $entity;
         }
 
-        if (!empty($files = array_intersect($this->getEntity()->getFiles(), array_keys(request()->allFiles())))) {
+        if (! empty($files = array_intersect($this->getEntity()->getFiles(), array_keys(request()->allFiles())))) {
             $entity
                 ->addMultipleMediaFromRequest($this->getEntity()->getFiles())
                 ->each(function ($fileAdder) {
@@ -47,11 +47,11 @@ class Service
     {
         $updated = $entity->update(array_diff_key($attributes, array_flip($this->getEntity()->getFiles())));
 
-        if (!$entity instanceof HasMedia) {
+        if (! $entity instanceof HasMedia) {
             return $updated;
         }
 
-        if (!empty($files = array_intersect($this->getEntity()->getFiles(), array_keys(request()->allFiles())))) {
+        if (! empty($files = array_intersect($this->getEntity()->getFiles(), array_keys(request()->allFiles())))) {
             if ($entity->clearMediaCollection) {
                 $entity->clearMediaCollection();
             }

@@ -2,8 +2,8 @@
 
 namespace Yoeunes\Larafast\Transformers;
 
-use League\Fractal\TransformerAbstract as BaseTransformer;
 use Yoeunes\Larafast\Entities\Entity;
+use League\Fractal\TransformerAbstract as BaseTransformer;
 
 class Transformer extends BaseTransformer
 {

@@ -66,7 +66,7 @@ trait ValidationTrait
             return $this->fillableAttributes[$attribute];
         }
 
-        return !empty($this->fillableAttributes) ? $this->fillableAttributes : $this->fillable;
+        return ! empty($this->fillableAttributes) ? $this->fillableAttributes : $this->fillable;
     }
 
     /**

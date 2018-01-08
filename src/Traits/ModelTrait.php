@@ -2,8 +2,8 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 trait ModelTrait
 {

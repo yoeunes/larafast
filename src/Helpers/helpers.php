@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('active')) {
+if (! function_exists('active')) {
     /**
      * Sets the menu item class for an active route.
      *
@@ -16,7 +16,7 @@ if (!function_exists('active')) {
     }
 }
 
-if (!function_exists('getForm')) {
+if (! function_exists('getForm')) {
     /**
      * @param string $action
      *
@@ -36,7 +36,7 @@ if (!function_exists('getForm')) {
     }
 }
 
-if (!function_exists('success')) {
+if (! function_exists('success')) {
     /**
      * @param string      $message
      * @param string|null $title
@@ -52,7 +52,7 @@ if (!function_exists('success')) {
     }
 }
 
-if (!function_exists('error')) {
+if (! function_exists('error')) {
     /**
      * @param string      $message
      * @param string|null $title
@@ -68,7 +68,7 @@ if (!function_exists('error')) {
     }
 }
 
-if (!function_exists('information')) {
+if (! function_exists('information')) {
     /**
      * @param string      $message
      * @param string|null $title
@@ -84,7 +84,7 @@ if (!function_exists('information')) {
     }
 }
 
-if (!function_exists('warning')) {
+if (! function_exists('warning')) {
     /**
      * @param string      $message
      * @param string|null $title
@@ -100,7 +100,7 @@ if (!function_exists('warning')) {
     }
 }
 
-if (!function_exists('getExcelAttributesDefaultValue')) {
+if (! function_exists('getExcelAttributesDefaultValue')) {
     /**
      * @param $default
      *
