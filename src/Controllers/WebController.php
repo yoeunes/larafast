@@ -16,6 +16,9 @@ class WebController extends Controller
 {
     use ViewTrait, DataTableTrait, DataTableScopeTrait;
 
+    /**
+     * WebController constructor.
+     */
     public function __construct()
     {
         parent::__construct();

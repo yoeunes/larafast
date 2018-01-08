@@ -15,6 +15,9 @@ class ApiController extends Controller
 {
     use TransformerTrait, ResponseTrait;
 
+    /**
+     * ApiController constructor.
+     */
     public function __construct()
     {
         parent::__construct();

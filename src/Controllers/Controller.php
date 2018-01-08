@@ -19,6 +19,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, ServiceTrait, PolicyTrait, JobTrait, BlacklistTrait, AbilityTrait;
 
+    /**
+     * Controller constructor.
+     */
     public function __construct()
     {
         $this->middleware(BlacklistRoutes::class);

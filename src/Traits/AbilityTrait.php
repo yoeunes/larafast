@@ -26,6 +26,9 @@ trait AbilityTrait
         'destroy'       => 'delete',
     ];
 
+    /**
+     * @return array
+     */
     public function getAbilityMap()
     {
         return array_merge($this->defaultAbilities, $this->abilityMap);
@@ -43,6 +46,10 @@ trait AbilityTrait
         return $this;
     }
 
+    /**
+     * @param string $method
+     * @return string
+     */
     public function getPermission(string $method)
     {
         return array_key_exists($method, $map = $this->getAbilityMap()) ? $map[$method] : $method;

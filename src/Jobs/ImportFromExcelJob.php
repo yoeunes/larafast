@@ -13,6 +13,11 @@ class ImportFromExcelJob extends Job
     /** @var array $data */
     private $data;
 
+    /**
+     * ImportFromExcelJob constructor.
+     * @param $entity
+     * @param array $data
+     */
     public function __construct($entity, array $data)
     {
         $this->setEntity($entity);

@@ -18,7 +18,10 @@ class User extends Entity implements
 {
     use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasRoles;
 
-    public function setPasswordAttribute($value)
+    /**
+     * @param string $value
+     */
+    public function setPasswordAttribute(string $value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
