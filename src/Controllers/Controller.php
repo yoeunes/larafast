@@ -13,10 +13,11 @@ use Yoeunes\Larafast\Traits\BlacklistTrait;
 use Yoeunes\Larafast\Traits\EntityTrait;
 use Yoeunes\Larafast\Traits\JobTrait;
 use Yoeunes\Larafast\Traits\PolicyTrait;
+use Yoeunes\Larafast\Traits\ServiceTrait;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, PolicyTrait, JobTrait, BlacklistTrait, AbilityTrait;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, EntityTrait, ServiceTrait, PolicyTrait, JobTrait, BlacklistTrait, AbilityTrait;
 
     public function __construct()
     {

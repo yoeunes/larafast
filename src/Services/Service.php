@@ -98,4 +98,17 @@ class Service
     {
         return $entity->deactivate();
     }
+
+    /**
+     * @param null   $perPage
+     * @param array  $columns
+     * @param string $pageName
+     * @param null   $page
+     *
+     * @return \Illuminate\Pagination\Paginator|mixed
+     */
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
+    {
+        return $this->getEntity()->paginate($perPage, $columns, $pageName, $page);
+    }
 }

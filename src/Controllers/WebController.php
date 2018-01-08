@@ -10,12 +10,11 @@ use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
 use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
 use Yoeunes\Larafast\Traits\DataTableScopeTrait;
 use Yoeunes\Larafast\Traits\DataTableTrait;
-use Yoeunes\Larafast\Traits\ServiceTrait;
 use Yoeunes\Larafast\Traits\ViewTrait;
 
 class WebController extends Controller
 {
-    use ViewTrait, DataTableTrait, DataTableScopeTrait, ServiceTrait;
+    use ViewTrait, DataTableTrait, DataTableScopeTrait;
 
     public function __construct()
     {
