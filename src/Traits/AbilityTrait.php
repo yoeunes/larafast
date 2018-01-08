@@ -63,11 +63,12 @@ trait AbilityTrait
     /**
      * Authorize a given action for the current user.
      *
-     * @param  mixed  $ability
-     * @param  mixed|array  $arguments
-     * @return \Illuminate\Auth\Access\Response
+     * @param mixed       $ability
+     * @param mixed|array $arguments
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Auth\Access\Response
      */
-    public abstract function authorize($ability, $arguments = []);
+    abstract public function authorize($ability, $arguments = []);
 }
