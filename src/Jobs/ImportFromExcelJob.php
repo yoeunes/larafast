@@ -15,6 +15,7 @@ class ImportFromExcelJob extends Job
 
     /**
      * ImportFromExcelJob constructor.
+     *
      * @param $entity
      * @param array $data
      */
