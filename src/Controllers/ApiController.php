@@ -63,6 +63,7 @@ class ApiController extends Controller
     {
         $this->allow(__FUNCTION__);
 
+        /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
 
         $data = fractal($entity, $this->getTransformer())->toArray();
@@ -103,6 +104,7 @@ class ApiController extends Controller
     {
         $this->allow(__FUNCTION__);
 
+        /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
 
         request()->validate($this->getEntity()->getRules(__FUNCTION__), $this->getEntity()->getMessages());
@@ -126,6 +128,7 @@ class ApiController extends Controller
     {
         $this->allow(__FUNCTION__);
 
+        /** @var Entity $entity */
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->destroy($entity)) {
