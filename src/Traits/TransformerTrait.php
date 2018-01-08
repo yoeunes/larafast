@@ -3,8 +3,7 @@
 namespace Yoeunes\Larafast\Traits;
 
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Services\DefaultTransformer;
-use Yoeunes\Larafast\Services\Transformer;
+use League\Fractal\TransformerAbstract as Transformer;
 
 trait TransformerTrait
 {
@@ -23,9 +22,9 @@ trait TransformerTrait
 
                 return new $transformer();
             }
-
-            return new DefaultTransformer();
         }
+
+        return new \Yoeunes\Larafast\Transformers\Transformer();
     }
 
     /**

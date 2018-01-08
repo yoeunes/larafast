@@ -69,7 +69,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->get('/lessons/9/edit');
 
-        $response->isNotFound();
+        $this->assertTrue($response->isNotFound());
         $response->assertSee('<title>Page Not Found</title>');
         $response->assertSeeText('Sorry, the page you are looking for could not be found.');
     }
@@ -95,7 +95,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->post('/lessons', $data);
 
-        $response->isRedirection();
+        $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
         $this->assertDatabaseHas(Lesson::TABLE, $data);
@@ -107,7 +107,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->post('/lessons');
 
-        $response->isRedirection();
+        $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
 
         $this->assertInstanceOf(\Illuminate\Validation\ValidationException::class, $response->exception);
@@ -129,7 +129,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->put('/lessons/'.$lesson->id, $data);
 
-        $response->isRedirection();
+        $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
         $this->assertDatabaseHas(Lesson::TABLE, array_merge(['id' => $lesson->id], $data));
@@ -143,7 +143,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->put('/lessons/9', $data);
 
-        $response->isNotFound();
+        $this->assertTrue($response->isNotFound());
         $response->assertSeeText('Sorry, the page you are looking for could not be found.');
     }
 
@@ -155,7 +155,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->put('/lessons/'.$lesson->id);
 
-        $response->isRedirection();
+        $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
 
         $this->assertInstanceOf(\Illuminate\Validation\ValidationException::class, $response->exception);
@@ -175,10 +175,20 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->delete('/lessons/'.$lesson->id);
 
-        $response->isRedirection();
+        $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
         $this->assertDatabaseMissing(Lesson::TABLE, ['id' => $lesson->id]);
+    }
+
+    /** @test */
+    public function it_return_not_found_if_trying_to_delete_non_existing_lesson()
+    {
+        /** @var TestResponse $result */
+        $response = $this->delete('/lessons/9');
+
+        $this->assertTrue($response->isNotFound());
+        $response->assertSeeText('Sorry, the page you are looking for could not be found.');
     }
 
     /** @test */
@@ -208,7 +218,7 @@ class WebControllerTest extends TestCase
         /** @var TestResponse $result */
         $response = $this->delete('/lessons/'.$lesson->id);
 
-        $response->isRedirection();
+        $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
         $this->assertDatabaseMissing(Lesson::TABLE, ['id' => $lesson->id]);
