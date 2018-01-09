@@ -20,7 +20,8 @@ class LarafastServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/larafast.php' => config_path('larafast.php'),
             __DIR__.'/views'               => resource_path('views/'.config('larafast.views_path')),
-            __DIR__.'/macros'              => resource_path('macros/'.config('larafast.macros_path')),
+            __DIR__.'/macros'              => resource_path(config('larafast.macros_path')),
+            __DIR__.'/macros'              => public_path(config('larafast.assets_path')),
         ]);
     }
 
