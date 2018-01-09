@@ -17,7 +17,7 @@ return [
     'datatables_action_path'       => 'vendor.larafast.action',
     'default_form_path'            => 'vendor.larafast._form',
     'components_form_path'         => 'vendor.larafast.components.form',
-    'views_path'                   => 'vendor.larafast',
+    'views_path'                   => 'vendor/larafast',
     'assets_path'                  => 'vendor/larafast',
     'macros_path'                  => 'resources/vendor/larafast/macros',
 ];
