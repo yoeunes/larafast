@@ -1,4 +1,4 @@
-@extends('master')
+@extends(config('larafast.views_path').'.master')
 
 @title(preg_replace('/\./', ' ', app('router')->getCurrentRoute()->getName()))
 
@@ -10,8 +10,10 @@
         </div>
         <div class="global-body">
             {{ Form::model($entity, ['route' => [preg_replace('/\.edit/', '.update', app('router')->getCurrentRoute()->getName()), $entity->id], 'method' => 'PUT', 'files' => true]) }}
-            @include(getForm('edit'))
-            @include('admin.default.save_and_reset_buttons')
+            <div class="row">
+                @include(getForm('edit'))
+            </div>
+            @include(config('larafast.views_path').'.save_and_reset_buttons')
             {{ Form::close() }}
         </div>
     </div>

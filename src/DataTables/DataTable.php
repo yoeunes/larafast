@@ -15,8 +15,6 @@ class DataTable extends BaseDataTable
 
     protected $columns = [];
 
-    protected $datatableAction = 'larafast.default.action';
-
     /**
      * Build DataTable class.
      *
@@ -36,7 +34,7 @@ class DataTable extends BaseDataTable
         }
 
         return $dataTable
-            ->addColumn('action', $this->datatableAction);
+            ->addColumn('action', config('larafast.datatables_action_path'));
     }
 
     /**

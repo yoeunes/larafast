@@ -1,6 +1,6 @@
 <?php
 
-Form::component('text_', 'components.form.text', [
+Form::component('text_', config('larafast.components_form_path').'.text', [
     'name',
     'placeholder'      => null,
     'value'            => null,
@@ -8,7 +8,7 @@ Form::component('text_', 'components.form.text', [
     'label_attributes' => null,
 ]);
 
-Form::component('textarea_', 'components.form.textarea', [
+Form::component('textarea_', config('larafast.components_form_path').'.textarea', [
     'name',
     'editor'           => true,
     'placeholder'      => null,
@@ -17,7 +17,7 @@ Form::component('textarea_', 'components.form.textarea', [
     'label_attributes' => null,
 ]);
 
-Form::component('file_', 'components.form.file', [
+Form::component('file_', config('larafast.components_form_path').'.file', [
     'name',
     'placeholder'      => null,
     'attributes'       => [],

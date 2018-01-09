@@ -32,7 +32,7 @@ if (! function_exists('getForm')) {
             return $view;
         }
 
-        return 'larafast.default._form';
+        return config('larafast.default_form_path');
     }
 }
 
