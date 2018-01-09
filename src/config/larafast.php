@@ -19,5 +19,5 @@ return [
     'components_form_path'         => 'vendor.larafast.components.form',
     'views_path'                   => 'vendor/larafast',
     'assets_path'                  => 'vendor/larafast',
-    'macros_path'                  => 'resources/vendor/larafast/macros',
+    'macros_path'                  => 'vendor/larafast/macros',
 ];
