@@ -20,4 +20,5 @@ return [
     'views_path'                   => 'vendor/larafast',
     'assets_path'                  => 'vendor/larafast',
     'macros_path'                  => 'vendor/larafast/macros',
+    
 ];
