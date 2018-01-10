@@ -1,4 +1,4 @@
-@extends(config('larafast.views_path').'.master')
+@extends(config('larafast.path.views').'/master')
 
 @title(preg_replace('/\./', ' ', app('router')->getCurrentRoute()->getName()))
 
@@ -13,7 +13,7 @@
             <div class="row">
                 @include(getForm('edit'))
             </div>
-            @include(config('larafast.path.views.relative').'/save_and_reset_buttons')
+            @include(config('larafast.path.views').'/save_and_reset_buttons')
             {{ Form::close() }}
         </div>
     </div>
