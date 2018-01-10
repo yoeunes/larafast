@@ -1,4 +1,4 @@
-@extends(config('larafast.views_path').'.master')
+@extends(config('larafast.path.views.relative').'/master')
 
 @title(preg_replace('/\./', ' ', app('router')->getCurrentRoute()->getName()))
 
@@ -9,9 +9,9 @@
             <i class="fa fa-plus-circle"></i> {{ preg_replace('/\./', ' ', app('router')->getCurrentRoute()->getName()) }}
         </div>
         <div class="global-body">
-            {{ Form::open(['route' => preg_replace('/\.create/', '.store', app('router')->getCurrentRoute()->getName()), 'files' => true]) }}
+            {{ Form::model($entity, ['route' => [preg_replace('/\.edit/', '.update', app('router')->getCurrentRoute()->getName()), $entity->id], 'method' => 'PUT', 'files' => true]) }}
             <div class="row">
-                @include(getForm('create'))
+                @include(getForm('edit'))
             </div>
             @include(config('larafast.path.views.relative').'/save_and_reset_buttons')
             {{ Form::close() }}

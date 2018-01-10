@@ -17,7 +17,7 @@ trait ServiceTrait
     private function guessServiceFromEntityName()
     {
         if ('' !== $entity = $this->entityBaseName()) {
-            $service = config('larafast.services_namespace').'\\'.$entity.'Service';
+            $service = config('larafast.namespace.service').'\\'.$entity.'Service';
             if (class_exists($service)) {
                 $this->service = $service;
 

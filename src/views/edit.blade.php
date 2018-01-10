@@ -13,7 +13,7 @@
             <div class="row">
                 @include(getForm('edit'))
             </div>
-            @include(config('larafast.views_path').'.save_and_reset_buttons')
+            @include(config('larafast.path.views.relative').'/save_and_reset_buttons')
             {{ Form::close() }}
         </div>
     </div>

@@ -16,7 +16,7 @@ trait DataTableScopeTrait
     private function guessDataTableScopeFromEntityName()
     {
         if ('' !== $entity = $this->entityBaseName()) {
-            $dataTableScope = config('larafast.datatable_scope_namespace').'\\'.$entity.'DataTableScope';
+            $dataTableScope = config('larafast.namespace.datatables_scope').'\\'.$entity.'DataTableScope';
             if (class_exists($dataTableScope)) {
                 $this->dataTableScope = $dataTableScope;
 

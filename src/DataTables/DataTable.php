@@ -34,7 +34,7 @@ class DataTable extends BaseDataTable
         }
 
         return $dataTable
-            ->addColumn('action', config('larafast.datatables_action_path'));
+            ->addColumn('action', config('larafast.path.datatables_default_action'));
     }
 
     /**

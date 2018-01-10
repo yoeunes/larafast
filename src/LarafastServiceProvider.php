@@ -16,12 +16,14 @@ class LarafastServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/config/larafast.php', 'larafast');
         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
         $this->loadViewsFrom(__DIR__.'/views', 'larafast');
+        $this->loadTranslationsFrom(__DIR__.'/translations', 'larafast');
 
         $this->publishes([
             __DIR__.'/config/larafast.php' => config_path('larafast.php'),
-            __DIR__.'/views'               => resource_path('views/'.config('larafast.views_path')),
-            __DIR__.'/macros'              => resource_path(config('larafast.macros_path')),
-            __DIR__.'/assets'              => public_path(config('larafast.assets_path')),
+            __DIR__.'/views'               => config('larafast.path.views'),
+            __DIR__.'/macros'              => config('larafast.path.macros'),
+            __DIR__.'/assets'              => config('larafast.path.assets'),
+            __DIR__.'/translations'        => config('larafast.path.translations'),
         ]);
     }
 

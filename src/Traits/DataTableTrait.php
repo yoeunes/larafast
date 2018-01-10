@@ -45,7 +45,7 @@ trait DataTableTrait
     private function guessDataTableFromEntityName()
     {
         if ('' !== $entity = $this->entityBaseName()) {
-            $dataTable = config('larafast.datatable_namespace').'\\'.$entity.'DataTable';
+            $dataTable = config('larafast.namespace.datatables').'\\'.$entity.'DataTable';
 
             if (class_exists($dataTable)) {
                 $this->dataTable = $dataTable;

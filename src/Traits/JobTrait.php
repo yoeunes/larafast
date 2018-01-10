@@ -16,7 +16,7 @@ trait JobTrait
     private function guessJobFromEntityName()
     {
         if ('' !== $entity = $this->entityBaseName()) {
-            $job = config('larafast.jobs_namespace').'\\'.$entity.'Job';
+            $job = config('larafast.namespace.job').'\\'.$entity.'Job';
 
             if (class_exists($job)) {
                 $this->job = $job;

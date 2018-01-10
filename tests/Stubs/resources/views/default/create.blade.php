@@ -1,4 +1,4 @@
-@extends(config('larafast.views_path').'.master')
+@extends(config('larafast.path.views.relative').'/master')
 
 @title(preg_replace('/\./', ' ', app('router')->getCurrentRoute()->getName()))
 

@@ -15,7 +15,7 @@ trait PolicyTrait
     private function guessPolicyFromEntityName()
     {
         if ('' !== $entity = $this->entityBaseName()) {
-            $policy = config('larafast.policies_namespace').'\\'.$entity.'Policy';
+            $policy = config('larafast.namespace.policy').'\\'.$entity.'Policy';
             if (class_exists($policy)) {
                 $this->policy = $policy;
 

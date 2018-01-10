@@ -114,22 +114,45 @@ class TestCase extends BaseTestCase
         ]);
 
         $app['config']->set('larafast', [
-            'entities_namespace'     => 'Yoeunes\\Larafast\\Tests\\Stubs\\Entities',
-            'controllers_namespace'  => 'Yoeunes\\Larafast\\Tests\\Stubs\\Controllers',
-            'transformers_namespace' => 'Yoeunes\\Larafast\\Tests\\Stubs\\Transformers',
-            'services_namespace'     => 'Yoeunes\\Larafast\\Tests\\Stubs\\Services',
-            'policies_namespace'     => 'Yoeunes\\Larafast\\Tests\\Stubs\\Policies',
-            'exceptions'             => [
-                \Illuminate\Auth\Access\AuthorizationException::class       => ['method' => 'unauthorized', 'message' => null],
-                \Illuminate\Database\Eloquent\ModelNotFoundException::class => ['method' => 'notFound', 'message' => null],
-                \Illuminate\Auth\AuthenticationException::class             => ['method'  => 'unauthorized', 'message' => 'Unauthenticated'],
+            'path' => [
+                'routes'                    => base_path('routes/web.php'),
+                'api_routes'                => base_path('routes/api.php'),
+                'migration'                 => database_path('migrations/'),
+                'entity'                    => app_path('Entities/'),
+                'datatables'                => app_path('DataTables/'),
+                'datatables_scope'          => app_path('DataTables/Scopes/'),
+                'datatables_default_action' => [
+                    'absolute' => resource_path('views/layout/partials/_datatables_action.blade.php'),
+                    'relative' => 'layout/partials/_datatables_action/',
+                ],
+                'job'                       => app_path('Jobs/'),
+                'policy'                    => app_path('Policies/'),
+                'web_controller'            => app_path('Http/Controllers/Web/'),
+                'api_controller'            => app_path('Http/Controllers/Api/'),
+                'transformer'               => app_path('Transformers/'),
+                'service'                   => app_path('Services/'),
+                'views'                     => [
+                    'absolute' => resource_path('views/default/'),
+                    'relative' => 'default/',
+                ],
+                'lang'                      => resource_path('lang/'),
+                'default_form'              => [
+                    'absolute' => resource_path('views/default/_form.blade.php'),
+                    'relative' => 'default/_form',
+                ],
+                'assets'                    => public_path('assets/'),
+                'macros'                    => resource_path('macros/'),
+                'components'                => resource_path('views/components/'),
+                'translations'              => resource_path('lang/vendor/larafast/'),
             ],
-            'datatables_action_path'       => 'vendor.larafast.action',
-            'default_form_path'            => 'vendor.larafast._form',
-            'components_form_path'         => 'vendor.larafast.components.form',
-            'views_path'                   => 'vendor/larafast/',
-            'assets_path'                  => 'vendor/larafast',
-            'macros_path'                  => 'vendor/larafast/macros',
+            'namespace' => [
+                'entity'            => 'Yoeunes\Larafast\Tests\Stubs\Entities',
+                'web_controller'    => 'Yoeunes\Larafast\Tests\Stubs\Controllers\Web',
+                'api_controller'    => 'Yoeunes\Larafast\Tests\Stubs\Controllers\Api',
+                'policy'            => 'Yoeunes\Larafast\Tests\Stubs\Policies',
+                'transformer'       => 'Yoeunes\Larafast\Tests\Stubs\Transformers',
+                'service'           => 'Yoeunes\Larafast\Tests\Stubs\Services',
+            ],
 
         ]);
 

@@ -16,7 +16,7 @@ trait TransformerTrait
     private function guessTransformerFromEntityName()
     {
         if ('' !== $entity = $this->entityBaseName()) {
-            $transformer = config('larafast.transformers_namespace').'\\'.$entity.'Transformer';
+            $transformer = config('larafast.namespace.transformer').'\\'.$entity.'Transformer';
             if (class_exists($transformer)) {
                 $this->transformer = $transformer;
 

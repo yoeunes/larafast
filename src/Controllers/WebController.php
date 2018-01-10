@@ -62,10 +62,10 @@ class WebController extends Controller
         $entity = $this->getService()->store(request($this->getEntity()->getFillableAttributes(__FUNCTION__)));
 
         if ($entity instanceof Entity) {
-            return success('L\'Entité a été ajoutée avec succès');
+            return success(trans('larafast::messages.success.store'));
         }
 
-        return error('Une erreur s\'est produite veuillez réessayer ultérieurement');
+        return error(trans('larafast::messages.error'));
     }
 
     /**
@@ -111,10 +111,10 @@ class WebController extends Controller
         request()->validate($this->getEntity()->getRules(__FUNCTION__), $this->getEntity()->getMessages());
 
         if ($this->getService()->update($entity, request($this->getEntity()->getFillableAttributes(__FUNCTION__)))) {
-            return success('L\'Entité a été modifiée avec succès');
+            return success(trans('larafast::messages.success.update'));
         }
 
-        return error('Une erreur s\'est produite veuillez réessayer ultérieurement');
+        return error(trans('larafast::messages.error'));
     }
 
     /**
@@ -133,10 +133,10 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->destroy($entity)) {
-            return success('L\'Entité a été supprimée avec succès');
+            return success(trans('larafast::messages.success.destroy'));
         }
 
-        return error('Une erreur s\'est produite veuillez réessayer ultérieurement');
+        return error(trans('larafast::messages.error'));
     }
 
     /**
@@ -178,7 +178,7 @@ class WebController extends Controller
 
         dispatch(new ImportFromExcelJob($this->entityName(), $data->toArray()));
 
-        return information('L\'importation est en cours veuillez patienter');
+        return information(trans('larafast::messages.success.excelStore'));
     }
 
     /**
@@ -213,10 +213,10 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->activate($entity)) {
-            return success('L\'Entité a été activée avec succès');
+            return success(trans('larafast::messages.success.activate'));
         }
 
-        return error('Une erreur s\'est produite veuillez réessayer ultérieurement');
+        return error(trans('larafast::messages.error'));
     }
 
     /**
@@ -234,9 +234,9 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->deactivate($entity)) {
-            return success('L"Entité a été désactivée avec succès');
+            return success(trans('larafast::messages.success.deactivate'));
         }
 
-        return error('Une erreur s\'est produite veuillez réessayer ultérieurement');
+        return error(trans('larafast::messages.error'));
     }
 }

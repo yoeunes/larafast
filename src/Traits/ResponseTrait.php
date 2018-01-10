@@ -168,9 +168,9 @@ trait ResponseTrait
     {
         $exception_class = get_class($exception);
 
-        if (array_key_exists($exception_class, config('larafast.exceptions'))) {
-            $method  = config('larafast.exceptions')[$exception_class]['method'];
-            $message = config('larafast.exceptions')[$exception_class]['message'];
+        if (array_key_exists($exception_class, config('larafast.exception'))) {
+            $method  = config('larafast.exception')[$exception_class]['method'];
+            $message = config('larafast.exception')[$exception_class]['message'];
 
             return $this->{$method}($message);
         }
