@@ -99,6 +99,10 @@ class DataTable extends BaseDataTable
             return $this->columns;
         }
 
+        if(count($columns = $this->getEntity()->dataTableColumns)) {
+            return $columns;
+        }
+
         return array_diff(Schema::getColumnListing($this->getEntity()->getTable()), $this->getEntity()->getHidden());
     }
 

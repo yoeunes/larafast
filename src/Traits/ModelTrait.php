@@ -7,6 +7,8 @@ use Illuminate\Pagination\Paginator;
 
 trait ModelTrait
 {
+    public $dataTableColumns = [];
+
     /**
      * @param int $perPage
      *
