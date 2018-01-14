@@ -14,7 +14,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends Entity implements
     AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract
+    CanResetPasswordContract,
+    HasMedia
 {
     use Authenticatable, Authorizable, CanResetPassword, HasApiTokens, HasRoles;
 
