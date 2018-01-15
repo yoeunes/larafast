@@ -72,18 +72,18 @@ class DataTable extends BaseDataTable
         }
 
         $builder
-            ->addAction(['width' => '80px'])
-            ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
-                'buttons' => [
-                    'create',
-                    'export',
-                    'print',
-                    'reset',
-                    'reload',
-                ],
-            ]);
+            ->addAction(['width' => '80px']);
+//            ->parameters([
+//                'dom'     => 'Bfrtip',
+//                'order'   => [[0, 'desc']],
+//                'buttons' => [
+//                    'create',
+//                    'export',
+//                    'print',
+//                    'reset',
+//                    'reload',
+//                ],
+//            ]);
 
         return $builder;
     }

@@ -5,7 +5,7 @@
 @section('content')
     <div class="mt30">
         <div class="table-wrapper">
-            {!! $dataTable->table(['class' => 'table table-bordered']) !!}
+            {!! $dataTable->table(['class' => 'table table-bordered dt-responsive']) !!}
         </div>
     </div>
 @endsection
