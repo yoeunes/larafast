@@ -15,6 +15,8 @@ class DataTable extends BaseDataTable
 
     protected $columns = [];
 
+    protected $formattedColumns = [];
+
     /**
      * Build DataTable class.
      *
@@ -24,17 +26,44 @@ class DataTable extends BaseDataTable
      */
     public function dataTable($query)
     {
+        $rowColumns = [];
         $dataTable = new EloquentDataTable($query);
 
         if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
             $dataTable->addColumn('image', function (Entity $entity) {
                 return '<img src="'.asset($entity->image()).'"  width="80" height="80">';
-            })
-                ->rawColumns(['image', 'action']);
+            });
+            $rowColumns[] = 'image';
+            $rowColumns[] = 'action';
         }
 
+        foreach ($this->formattedColumns as $index => $column) {
+            if(null !== $column) {
+                $dataTable->editColumn($index, $column);
+                $rowColumns[] = $index;
+            }
+        }
+
+
         return $dataTable
-            ->addColumn('action', config('larafast.path.datatables_default_action'));
+            ->addColumn('action', config('larafast.path.datatables_default_action'))
+            ->rawColumns($rowColumns);
+    }
+
+    public function formatColumns(array $columns = [])
+    {
+        $result = [];
+
+        foreach ($columns as $index => $column) {
+            if(is_int($index)) {
+                $result[$column] = null;
+                continue;
+            }
+
+            $result[$index] = $column;
+        }
+
+        return $result;
     }
 
     /**
@@ -71,19 +100,7 @@ class DataTable extends BaseDataTable
                 ]);
         }
 
-        $builder
-            ->addAction(['width' => '80px']);
-//            ->parameters([
-//                'dom'     => 'Bfrtip',
-//                'order'   => [[0, 'desc']],
-//                'buttons' => [
-//                    'create',
-//                    'export',
-//                    'print',
-//                    'reset',
-//                    'reload',
-//                ],
-//            ]);
+        $builder->addAction(['width' => '80px']);
 
         return $builder;
     }
@@ -100,10 +117,19 @@ class DataTable extends BaseDataTable
         }
 
         if(count($columns = $this->getEntity()->dataTableColumns)) {
-            return $columns;
+            $this->formattedColumns = $this->formatColumns($columns);
+
+            return array_keys($this->formattedColumns);
         }
 
         return array_diff(Schema::getColumnListing($this->getEntity()->getTable()), $this->getEntity()->getHidden());
+    }
+
+    protected function setColumns(array $columns = [])
+    {
+        $this->columns = $columns;
+
+        return $this;
     }
 
     /**
