@@ -27,7 +27,7 @@ class DataTable extends BaseDataTable
     public function dataTable($query)
     {
         $rowColumns = [];
-        $dataTable = new EloquentDataTable($query);
+        $dataTable  = new EloquentDataTable($query);
 
         if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
             $dataTable->addColumn('image', function (Entity $entity) {
@@ -38,12 +38,11 @@ class DataTable extends BaseDataTable
         }
 
         foreach ($this->formattedColumns as $index => $column) {
-            if(null !== $column) {
+            if (null !== $column) {
                 $dataTable->editColumn($index, $column);
                 $rowColumns[] = $index;
             }
         }
-
 
         return $dataTable
             ->addColumn('action', config('larafast.path.datatables_default_action'))
@@ -55,7 +54,7 @@ class DataTable extends BaseDataTable
         $result = [];
 
         foreach ($columns as $index => $column) {
-            if(is_int($index)) {
+            if (is_int($index)) {
                 $result[$column] = null;
                 continue;
             }
@@ -116,7 +115,7 @@ class DataTable extends BaseDataTable
             return $this->columns;
         }
 
-        if(count($columns = $this->getEntity()->dataTableColumns)) {
+        if (count($columns = $this->getEntity()->dataTableColumns)) {
             $this->formattedColumns = $this->formatColumns($columns);
 
             return array_keys($this->formattedColumns);
