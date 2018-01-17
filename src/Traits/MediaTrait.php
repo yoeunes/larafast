@@ -56,7 +56,7 @@ trait MediaTrait
                 'width'   => 100,
                 'height'  => 100,
                 'quality' => 20,
-            ]
+            ],
         ], $this->imageMeta);
     }
 
@@ -76,7 +76,6 @@ trait MediaTrait
                 ->width($this->getImageMeta()['lazy']['width'] ?? 100)
                 ->height($this->getImageMeta()['lazy']['height'] ?? 100)
                 ->quality($this->getImageMeta()['lazy']['quality'] ?? 20);
-
         } catch (InvalidManipulation $e) {
         }
     }
