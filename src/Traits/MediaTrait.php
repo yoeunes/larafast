@@ -12,14 +12,13 @@ trait MediaTrait
     use HasMediaTrait;
 
     /** @var array */
-    protected $thumbSize = [
-        'width'  => 100,
-        'height' => 100,
-    ];
+    public $imageMeta = [];
 
     public $clearMediaCollection = true;
 
     public $showImageInDataTable = true;
+
+    public $imageQuality = 100;
 
     /**
      * @param string $thumb
@@ -47,6 +46,20 @@ trait MediaTrait
         return $this->getMedia();
     }
 
+    public function getImageMeta()
+    {
+        return array_merge([
+            'width'   => 100,
+            'height'  => 100,
+            'quality' => 100,
+            'lazy'    => [
+                'width'   => 100,
+                'height'  => 100,
+                'quality' => 20,
+            ]
+        ], $this->imageMeta);
+    }
+
     /**
      * @param Media|null $media
      */
@@ -54,10 +67,16 @@ trait MediaTrait
     {
         try {
             $this->addMediaConversion('thumb')
-                ->width($this->thumbSize['width'])
-                ->height($this->thumbSize['height'])
-                ->quality(20)
+                ->width($this->getImageMeta()['width'] ?? 100)
+                ->height($this->getImageMeta()['height'] ?? 100)
+                ->quality($this->getImageMeta()['quality'] ?? 100)
                 ->optimize();
+
+            $this->addMediaConversion('lazy')
+                ->width($this->getImageMeta()['lazy']['width'] ?? 100)
+                ->height($this->getImageMeta()['lazy']['height'] ?? 100)
+                ->quality($this->getImageMeta()['lazy']['quality'] ?? 20);
+
         } catch (InvalidManipulation $e) {
         }
     }
