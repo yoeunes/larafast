@@ -2,8 +2,8 @@
 
 namespace Yoeunes\Larafast\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Yoeunes\Larafast\Traits\BulkTrait;
+use Illuminate\Database\Eloquent\Model;
 use Yoeunes\Larafast\Traits\ExcelTrait;
 use Yoeunes\Larafast\Traits\FilesTrait;
 use Yoeunes\Larafast\Traits\ModelTrait;
