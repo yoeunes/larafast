@@ -24,11 +24,11 @@ trait EntityTrait
     }
 
     /**
-     * @param Entity $entity
+     * @param Entity|string $entity
      *
      * @return $this
      */
-    public function setEntity(Entity $entity)
+    public function setEntity($entity)
     {
         $this->entity = $entity;
 
