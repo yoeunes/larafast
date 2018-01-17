@@ -34,7 +34,9 @@ trait ModelTrait
      */
     public function activate(): bool
     {
-        return $this->update(['active' => true]);
+        $this->active = true;
+
+        return $this->save();
     }
 
     /**
@@ -42,7 +44,9 @@ trait ModelTrait
      */
     public function deactivate(): bool
     {
-        return $this->update(['active' => false]);
+        $this->active = false;
+
+        return $this->save();
     }
 
     /**
