@@ -27,6 +27,29 @@ class ImportFromExcelJob extends Job
 
     public function handle()
     {
+        $this->formatExcelData();
+
+        $this->saveExcelToDatabase();
+    }
+
+    public function formatExcelData()
+    {
+        $casts = $this->getEntity()->getExcelAttributesCasting();
+
+        foreach($this->data as $index => $row) {
+            foreach ($row as $key => $value) {
+
+                if(!array_key_exists($key, $casts)) {
+                    continue;
+                }
+
+                settype($this->data[$index][$key], $casts[$key]);
+            }
+        }
+    }
+
+    public function saveExcelToDatabase()
+    {
         collect($this->data)->chunk(100)->each(function (Collection $item) {
             $this->getEntity()->insertOrUpdate($item->toArray());
         });

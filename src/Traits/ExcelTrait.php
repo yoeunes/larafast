@@ -7,6 +7,9 @@ trait ExcelTrait
     /** @var array */
     protected $excelAttributes = [];
 
+    /** @var array  */
+    protected $excelAttributesCasting = [];
+
     /**
      * @return array
      */
@@ -25,6 +28,26 @@ trait ExcelTrait
     public function setExcelAttributes(array $excelAttributes = [])
     {
         $this->excelAttributes = $excelAttributes;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExcelAttributesCasting(): array
+    {
+        return $this->excelAttributesCasting;
+    }
+
+    /**
+     * @param array $excelAttributesCasting
+     *
+     * @return $this
+     */
+    public function setExcelAttributesCasting(array $excelAttributesCasting = [])
+    {
+        $this->excelAttributesCasting = $excelAttributesCasting;
 
         return $this;
     }
