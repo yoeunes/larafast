@@ -7,7 +7,7 @@ trait ExcelTrait
     /** @var array */
     protected $excelAttributes = [];
 
-    /** @var array  */
+    /** @var array */
     protected $excelAttributesCasting = [];
 
     /**

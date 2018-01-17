@@ -36,10 +36,9 @@ class ImportFromExcelJob extends Job
     {
         $casts = $this->getEntity()->getExcelAttributesCasting();
 
-        foreach($this->data as $index => $row) {
+        foreach ($this->data as $index => $row) {
             foreach ($row as $key => $value) {
-
-                if(!array_key_exists($key, $casts)) {
+                if (! array_key_exists($key, $casts)) {
                     continue;
                 }
 
