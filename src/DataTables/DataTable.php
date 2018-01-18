@@ -75,7 +75,7 @@ class DataTable extends BaseDataTable
     {
         $query = $this->getEntity()->newQuery()->select($this->getColumns());
 
-        if(count($relations = $this->getEntity()->dataTableEager)) {
+        if (count($relations = $this->getEntity()->dataTableEager)) {
             $query->with($relations)->select($this->getEntity()->getTable() . '.*');
         }
 
