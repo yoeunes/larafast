@@ -79,7 +79,6 @@ trait MediaTrait
                 ->quality($this->getImageMeta()['lazy']['quality'] ?? 90)
                 ->blur($this->getImageMeta()['lazy']['blur'] ?? 80)
                 ->optimize();
-
         } catch (InvalidManipulation $e) {
         }
     }
