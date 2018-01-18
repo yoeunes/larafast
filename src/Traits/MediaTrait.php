@@ -51,11 +51,12 @@ trait MediaTrait
         return array_merge([
             'width'   => 100,
             'height'  => 100,
-            'quality' => 100,
+            'quality' => 90,
             'lazy'    => [
                 'width'   => 100,
                 'height'  => 100,
-                'quality' => 20,
+                'quality' => 90,
+                'blur'    => 80,
             ],
         ], $this->imageMeta);
     }
@@ -69,13 +70,16 @@ trait MediaTrait
             $this->addMediaConversion('thumb')
                 ->width($this->getImageMeta()['width'] ?? 100)
                 ->height($this->getImageMeta()['height'] ?? 100)
-                ->quality($this->getImageMeta()['quality'] ?? 100)
+                ->quality($this->getImageMeta()['quality'] ?? 90)
                 ->optimize();
 
             $this->addMediaConversion('lazy')
                 ->width($this->getImageMeta()['lazy']['width'] ?? 100)
                 ->height($this->getImageMeta()['lazy']['height'] ?? 100)
-                ->quality($this->getImageMeta()['lazy']['quality'] ?? 20);
+                ->quality($this->getImageMeta()['lazy']['quality'] ?? 90)
+                ->blur($this->getImageMeta()['lazy']['blur'] ?? 80)
+                ->optimize();
+
         } catch (InvalidManipulation $e) {
         }
     }
