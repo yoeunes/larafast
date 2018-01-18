@@ -26,7 +26,7 @@ class DataTable extends BaseDataTable
      */
     public function dataTable($query)
     {
-        $rowColumns = [];
+        $rowColumns = ['action'];
         $dataTable  = new EloquentDataTable($query);
 
         if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
@@ -34,7 +34,6 @@ class DataTable extends BaseDataTable
                 return '<img src="'.asset($entity->image()).'"  width="80" height="80">';
             });
             $rowColumns[] = 'image';
-            $rowColumns[] = 'action';
         }
 
         foreach ($this->formattedColumns as $index => $column) {
