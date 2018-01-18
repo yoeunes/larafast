@@ -73,7 +73,13 @@ class DataTable extends BaseDataTable
      */
     public function query(Entity $model)
     {
-        return $this->getEntity()->newQuery()->select($this->getColumns());
+        $query = $this->getEntity()->newQuery()->select($this->getColumns());
+
+        if(count($relations = $this->getEntity()->dataTableEager)) {
+            $query->with($relations)->select($this->getEntity()->getTable() . '.*');
+        }
+
+        return $query;
     }
 
     /**

@@ -9,6 +9,8 @@ trait ModelTrait
 {
     public $dataTableColumns = [];
 
+    public $dataTableEager = [];
+
     /**
      * @param int $perPage
      *
