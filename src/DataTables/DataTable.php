@@ -31,7 +31,7 @@ class DataTable extends BaseDataTable
 
         if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
             $dataTable->addColumn('image', function (Entity $entity) {
-                return '<img src="'.asset($entity->image()).'"  width="80" height="80">';
+                return '<img src="'.asset($entity->image()).'"  width="80" height="80" style="max-width: none;max-height:none;display:inline-block;">';
             });
             $rowColumns[] = 'image';
         }
