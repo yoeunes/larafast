@@ -18,7 +18,7 @@ trait MediaTrait
 
     public $showImageInDataTable = true;
 
-    public $imageQuality = 100;
+    public $imageToShowInDataTable = 'thumb';
 
     /**
      * @param string $thumb
