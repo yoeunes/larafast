@@ -17,6 +17,4 @@ use Yoeunes\Larafast\Traits\ValidationTrait;
 class Entity extends Model
 {
     use ModelTrait, ValidationTrait, FilesTrait, ExcelTrait, BulkTrait;
-
-    const DEFAULT_IMAGE = 'https://placehold.it/100x100';
 }

@@ -22,20 +22,23 @@ trait MediaTrait
 
     /**
      * @param string $thumb
+     * @param string $default_image
      *
      * @return string
      */
-    public function image($thumb = ''): string
+    public function image($thumb = '', $default_image = 'https://placehold.it/100x100'): string
     {
-        return $this->getMedia()->count() ? $this->getMedia()->first()->getUrl($thumb) : self::DEFAULT_IMAGE;
+        return $this->getMedia()->count() ? $this->getMedia()->first()->getUrl($thumb) : $default_image;
     }
 
     /**
+     * @param string $default_image_name
+     *
      * @return string
      */
-    public function imageName(): string
+    public function imageName($default_image_name = ''): string
     {
-        return $this->getMedia()->count() ? $this->getMedia()->first()->name : self::DEFAULT_IMAGE;
+        return $this->getMedia()->count() ? $this->getMedia()->first()->name : $default_image_name;
     }
 
     /**
