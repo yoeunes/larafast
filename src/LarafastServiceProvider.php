@@ -44,9 +44,9 @@ class LarafastServiceProvider extends ServiceProvider
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
-        $this->app->register(\Barryvdh\Cors\ServiceProvider::class);
         $this->app->register(\Laravel\Passport\PassportServiceProvider::class);
         $this->app->register(\Collective\Html\HtmlServiceProvider::class);
+//        $this->app->register(\Spatie\Cors\CorsServiceProvider::class);
         $this->app->register(\Spatie\Fractal\FractalServiceProvider::class);
         $this->app->register(\Spatie\MediaLibrary\MediaLibraryServiceProvider::class);
         $this->app->register(\Spatie\Permission\PermissionServiceProvider::class);
