@@ -2,7 +2,7 @@
 
 namespace Yoeunes\Larafast\Controllers;
 
-use Barryvdh\Cors\HandleCors;
+use Spatie\Cors\Cors;
 use Yoeunes\Larafast\Entities\Entity;
 use Yoeunes\Larafast\Traits\ResponseTrait;
 use Yoeunes\Larafast\Traits\TransformerTrait;
@@ -22,7 +22,7 @@ class ApiController extends Controller
     {
         parent::__construct();
 
-        $this->middleware(['api', ApiExceptionHandler::class, CreateFreshApiToken::class, HandleCors::class]);
+        $this->middleware(['api', ApiExceptionHandler::class, CreateFreshApiToken::class, Cors::class]);
     }
 
     /**
