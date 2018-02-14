@@ -2,6 +2,9 @@
 
 namespace Yoeunes\Larafast\Traits;
 
+use League\Flysystem\FileNotFoundException;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\Conversion\Conversion;
 use Spatie\MediaLibrary\Media;
 use Illuminate\Support\Collection;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -70,11 +73,20 @@ trait MediaTrait
     public function registerMediaConversions(Media $media = null)
     {
         try {
-            $this->addMediaConversion('thumb')
+            /** @var Conversion $thubm */
+            $thumb = $this->addMediaConversion('thumb')
                 ->width($this->getImageMeta()['width'] ?? 100)
                 ->height($this->getImageMeta()['height'] ?? 100)
                 ->quality($this->getImageMeta()['quality'] ?? 90)
                 ->optimize();
+
+            if(!empty($watermark = $this->getImageMeta()['watermark'])) {
+                $thumb
+                    ->watermark($watermark['image'])
+                    ->watermarkOpacity($watermark['opacity'])
+                    ->watermarkPosition($watermark['position'])
+                    ->watermarkPadding($watermark['padding']['x'], $watermark['padding']['y'], $watermark['padding']['unit']);
+            }
 
             $this->addMediaConversion('lazy')
                 ->width($this->getImageMeta()['lazy']['width'] ?? 100)
@@ -83,6 +95,7 @@ trait MediaTrait
                 ->blur($this->getImageMeta()['lazy']['blur'] ?? 80)
                 ->optimize();
         } catch (InvalidManipulation $e) {
+        } catch (FileNotFoundException $e) {
         }
     }
 }

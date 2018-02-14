@@ -64,7 +64,7 @@ trait AbilityTrait
     public function allow(string $function)
     {
         if (is_a($this->getPolicy(), Policy::class, true)) {
-            $this->authorize($this->getPermission($function), $this->entityName());
+            $this->authorize($this->getPermission($function), $this->getEntity());
         }
     }
 

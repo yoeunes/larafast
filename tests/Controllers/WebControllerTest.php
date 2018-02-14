@@ -202,7 +202,7 @@ class WebControllerTest extends TestCase
 
         /** @var TestResponse $result */
         $response = $this->put('/lessons/'.$lesson->id, $data);
-
+dd($response);
         $this->assertInstanceOf(\Illuminate\Auth\Access\AuthorizationException::class, $response->exception);
         $this->assertEquals('This action is unauthorized.', $response->exception->getMessage());
         $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->exception->getCode());
