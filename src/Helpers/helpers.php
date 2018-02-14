@@ -44,7 +44,7 @@ if (! function_exists('success')) {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    function success($message = '', string $title = null, array $options = [])
+    function success($message = '', string $title = '', array $options = [])
     {
         app('toastr')->success($message, $title, $options);
 
@@ -60,7 +60,7 @@ if (! function_exists('error')) {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    function error($message = '', string $title = null, array $options = [])
+    function error($message = '', string $title = '', array $options = [])
     {
         app('toastr')->error($message, $title, $options);
 
@@ -76,7 +76,7 @@ if (! function_exists('information')) {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    function information($message = '', string $title = null, array $options = [])
+    function information($message = '', string $title = '', array $options = [])
     {
         app('toastr')->info($message, $title, $options);
 
@@ -92,7 +92,7 @@ if (! function_exists('warning')) {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    function warning($message = '', string $title = null, array $options = [])
+    function warning($message = '', string $title = '', array $options = [])
     {
         app('toastr')->warning($message, $title, $options);
 
