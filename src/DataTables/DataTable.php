@@ -17,6 +17,13 @@ class DataTable extends BaseDataTable
 
     protected $formattedColumns = [];
 
+    protected $actionViewPath;
+
+    public function __construct()
+    {
+        $this->actionViewPath = config('larafast.path.datatables_default_action');
+    }
+
     /**
      * Build DataTable class.
      *
@@ -44,7 +51,7 @@ class DataTable extends BaseDataTable
         }
 
         return $dataTable
-            ->addColumn('action', config('larafast.path.datatables_default_action'))
+            ->addColumn('action', $this->actionViewPath)
             ->rawColumns($rowColumns);
     }
 
@@ -144,5 +151,25 @@ class DataTable extends BaseDataTable
     protected function filename(): string
     {
         return str_plural(strtolower($this->entityBaseName())).'datatable_'.time();
+    }
+
+    /**
+     * @param string $actionViewPath
+     *
+     * @return DataTable
+     */
+    public function setActionViewPath($actionViewPath)
+    {
+        $this->actionViewPath = $actionViewPath;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActionViewPath()
+    {
+        return $this->actionViewPath;
     }
 }
