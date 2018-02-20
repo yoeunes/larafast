@@ -13,6 +13,8 @@ class DefaultDataTable extends DataTable
      */
     public function __construct(Entity $entity)
     {
+        parent::__construct();
+
         $this->setEntity($entity);
     }
 }
