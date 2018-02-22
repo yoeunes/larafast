@@ -32,7 +32,7 @@
         "laravelcollective/html": "^5.6",
         "spatie/laravel-cors": "^1.0",
         "spatie/laravel-fractal": "^5.3",
-        "spatie/laravel-medialibrary": "^7.0",
+        "spatie/laravel-medialibrary": "^6.6",
         "spatie/laravel-permission": "^2.9",
         "yajra/laravel-datatables": "^1.0",
         "yoeunes/toastr": "^1.0"
