@@ -28,18 +28,18 @@
         "illuminate/routing": "5.6.*",
         "illuminate/support": "5.6.*",
         "illuminate/view": "5.6.*",
-        "laravel/passport": "^5.0",
+        "laravel/passport": "^6.0",
         "laravelcollective/html": "^5.6",
-        "spatie/laravel-cors": "^1.0",
+        "spatie/laravel-cors": "^1.2",
         "spatie/laravel-fractal": "^5.3",
-        "spatie/laravel-medialibrary": "^6.6",
+        "spatie/laravel-medialibrary": "^7.1",
         "spatie/laravel-permission": "^2.9",
         "yajra/laravel-datatables": "^1.0",
         "yoeunes/toastr": "^1.0"
     },
     "require-dev"      : {
         "mockery/mockery"    : "^1.0",
-        "phpunit/phpunit"    : "^7.0",
+        "phpunit/phpunit"    : "^7.1",
         "orchestra/testbench": "^3.6",
         "laracasts/TestDummy": "^2.3"
     },
