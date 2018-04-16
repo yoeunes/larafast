@@ -2,10 +2,10 @@
 
 namespace Yoeunes\Larafast\Traits;
 
-use League\Flysystem\FileNotFoundException;
-use Spatie\MediaLibrary\Conversion\Conversion;
 use Spatie\MediaLibrary\Media;
 use Illuminate\Support\Collection;
+use League\Flysystem\FileNotFoundException;
+use Spatie\MediaLibrary\Conversion\Conversion;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Image\Exceptions\InvalidManipulation;
 
@@ -79,7 +79,7 @@ trait MediaTrait
                 ->quality($this->getImageMeta()['quality'] ?? 90)
                 ->optimize();
 
-            if(!empty($this->getImageMeta()['watermark'])) {
+            if (! empty($this->getImageMeta()['watermark'])) {
                 $watermark = $this->getImageMeta()['watermark'];
                 $thumb
                     ->watermark($watermark['image'])
