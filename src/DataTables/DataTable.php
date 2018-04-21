@@ -100,7 +100,7 @@ class DataTable extends BaseDataTable
             ->columns($this->getColumns())
             ->minifiedAjax();
 
-        if(!empty($parameters = $this->getEntity()->dataTableCustomConfiguration)) {
+        if (! empty($parameters = $this->getEntity()->dataTableCustomConfiguration)) {
             $builder->parameters($parameters);
         }
 
