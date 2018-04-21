@@ -9,6 +9,8 @@ trait ModelTrait
 {
     public $dataTableColumns = [];
 
+    public $dataTableCustomConfiguration = [];
+
     public $dataTableEager = [];
 
     /**

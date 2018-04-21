@@ -100,6 +100,10 @@ class DataTable extends BaseDataTable
             ->columns($this->getColumns())
             ->minifiedAjax();
 
+        if(!empty($parameters = $this->getEntity()->dataTableCustomConfiguration)) {
+            $builder->parameters($parameters);
+        }
+
         if ($this->getEntity() instanceof HasMedia && $this->getEntity()->showImageInDataTable) {
             $builder
                 ->addColumn([
