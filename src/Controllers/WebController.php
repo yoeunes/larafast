@@ -14,6 +14,14 @@ use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
 
 class WebController extends Controller
 {
+    public const MESSAGES_ERROR               = 'larafast::messages.error';
+    public const MESSAGES_SUCCESS_ACTIVATE    = 'larafast::messages.success.activate';
+    public const MESSAGES_SUCCESS_DEACTIVATE  = 'larafast::messages.success.deactivate';
+    public const MESSAGES_SUCCESS_DESTROY     = 'larafast::messages.success.destroy';
+    public const MESSAGES_SUCCESS_EXCEL_STORE = 'larafast::messages.success.excelStore';
+    public const MESSAGES_SUCCESS_STORE       = 'larafast::messages.success.store';
+    public const MESSAGES_SUCCESS_UPDATE      = 'larafast::messages.success.update';
+
     use ViewTrait, DataTableTrait, DataTableScopeTrait;
 
     /**
@@ -62,10 +70,10 @@ class WebController extends Controller
         $entity = $this->getService()->store(request($this->getEntity()->getFillableAttributes(__FUNCTION__)));
 
         if ($entity instanceof Entity) {
-            return success(trans('larafast::messages.success.store'));
+            return success(trans(static::MESSAGES_SUCCESS_STORE));
         }
 
-        return error(trans('larafast::messages.error'));
+        return error(trans(static::MESSAGES_ERROR));
     }
 
     /**
@@ -111,10 +119,10 @@ class WebController extends Controller
         request()->validate($this->getEntity()->getRules(__FUNCTION__), $this->getEntity()->getMessages());
 
         if ($this->getService()->update($entity, request($this->getEntity()->getFillableAttributes(__FUNCTION__)))) {
-            return success(trans('larafast::messages.success.update'));
+            return success(trans(static::MESSAGES_SUCCESS_UPDATE));
         }
 
-        return error(trans('larafast::messages.error'));
+        return error(trans(static::MESSAGES_ERROR));
     }
 
     /**
@@ -133,10 +141,10 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->destroy($entity)) {
-            return success(trans('larafast::messages.success.destroy'));
+            return success(trans(static::MESSAGES_SUCCESS_DESTROY));
         }
 
-        return error(trans('larafast::messages.error'));
+        return error(trans(static::MESSAGES_ERROR));
     }
 
     /**
@@ -178,7 +186,7 @@ class WebController extends Controller
 
         dispatch(new ImportFromExcelJob($this->entityName(), $data->toArray()));
 
-        return information(trans('larafast::messages.success.excelStore'));
+        return information(trans(static::MESSAGES_SUCCESS_EXCEL_STORE));
     }
 
     /**
@@ -213,10 +221,10 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->activate($entity)) {
-            return success(trans('larafast::messages.success.activate'));
+            return success(trans(static::MESSAGES_SUCCESS_ACTIVATE));
         }
 
-        return error(trans('larafast::messages.error'));
+        return error(trans(static::MESSAGES_ERROR));
     }
 
     /**
@@ -234,9 +242,9 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->deactivate($entity)) {
-            return success(trans('larafast::messages.success.deactivate'));
+            return success(trans(static::MESSAGES_SUCCESS_DEACTIVATE));
         }
 
-        return error(trans('larafast::messages.error'));
+        return error(trans(static::MESSAGES_ERROR));
     }
 }
