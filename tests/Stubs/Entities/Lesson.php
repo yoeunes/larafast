@@ -20,6 +20,16 @@ class Lesson extends Entity
         'subject' => 'required|max:255',
     ];
 
+    public $dataTableColumns = [
+        'id',
+        'title',
+        'subject',
+        'active',
+        'user_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
