@@ -2,19 +2,15 @@
 
 namespace Yoeunes\Larafast\Controllers;
 
-use Spatie\Cors\Cors;
-use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Traits\ResponseTrait;
-use Yoeunes\Larafast\Traits\TransformerTrait;
-use League\Fractal\Serializer\JsonApiSerializer;
-use Yoeunes\Larafast\Middlewares\ApiExceptionHandler;
 use Laravel\Passport\Http\Middleware\CreateFreshApiToken;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use League\Fractal\Serializer\JsonApiSerializer;
+use Spatie\Cors\Cors;
+use Yoeunes\Larafast\Entities\Entity;
+use Yoeunes\Larafast\Middlewares\ApiExceptionHandler;
 
 class ApiController extends Controller
 {
-    use TransformerTrait, ResponseTrait;
-
     /**
      * ApiController constructor.
      */

@@ -2,15 +2,15 @@
 
 namespace Yoeunes\Larafast\Controllers;
 
-use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Traits\ViewTrait;
-use Yoeunes\Larafast\Traits\DataTableTrait;
-use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
-use Maatwebsite\Excel\Collections\RowCollection;
-use Yoeunes\Larafast\Traits\DataTableScopeTrait;
-use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
+use Maatwebsite\Excel\Collections\RowCollection;
+use Maatwebsite\Excel\Writers\LaravelExcelWriter;
+use Yoeunes\Larafast\Entities\Entity;
+use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
 use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
+use Yoeunes\Larafast\Traits\DataTableScopeTrait;
+use Yoeunes\Larafast\Traits\DataTableTrait;
+use Yoeunes\Larafast\Traits\ViewTrait;
 
 class WebController extends Controller
 {
@@ -70,10 +70,10 @@ class WebController extends Controller
         $entity = $this->getService()->store(request($this->getEntity()->getFillableAttributes(__FUNCTION__)));
 
         if ($entity instanceof Entity) {
-            return success(trans(static::MESSAGES_SUCCESS_STORE));
+            return request()->wantsJson() ? $this->created(null, fractal($entity, $this->getTransformer())->toArray()['data']) : success(trans(static::MESSAGES_SUCCESS_STORE));
         }
 
-        return error(trans(static::MESSAGES_ERROR));
+        return request()->wantsJson() ? $this->internalError() : error(trans(static::MESSAGES_ERROR));
     }
 
     /**
@@ -119,7 +119,7 @@ class WebController extends Controller
         request()->validate($this->getEntity()->getRules(__FUNCTION__), $this->getEntity()->getMessages());
 
         if ($this->getService()->update($entity, request($this->getEntity()->getFillableAttributes(__FUNCTION__)))) {
-            return success(trans(static::MESSAGES_SUCCESS_UPDATE));
+            return request()->wantsJson() ? $this->accepted() : success(trans(static::MESSAGES_SUCCESS_UPDATE));
         }
 
         return error(trans(static::MESSAGES_ERROR));
@@ -141,10 +141,10 @@ class WebController extends Controller
         $entity = $this->getEntity()->findOrFail($id);
 
         if ($this->getService()->destroy($entity)) {
-            return success(trans(static::MESSAGES_SUCCESS_DESTROY));
+            return request()->wantsJson() ? $this->noContent() : success(trans(static::MESSAGES_SUCCESS_DESTROY));
         }
 
-        return error(trans(static::MESSAGES_ERROR));
+        return request()->wantsJson() ? $this->internalError() : error(trans(static::MESSAGES_ERROR));
     }
 
     /**
