@@ -2,20 +2,20 @@
 
 namespace Yoeunes\Larafast\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Gate;
-use Yoeunes\Larafast\Middlewares\BlacklistRoutes;
-use Yoeunes\Larafast\Traits\AbilityTrait;
-use Yoeunes\Larafast\Traits\BlacklistTrait;
-use Yoeunes\Larafast\Traits\EntityTrait;
 use Yoeunes\Larafast\Traits\JobTrait;
+use Yoeunes\Larafast\Traits\EntityTrait;
 use Yoeunes\Larafast\Traits\PolicyTrait;
-use Yoeunes\Larafast\Traits\ResponseTrait;
+use Yoeunes\Larafast\Traits\AbilityTrait;
 use Yoeunes\Larafast\Traits\ServiceTrait;
+use Yoeunes\Larafast\Traits\ResponseTrait;
+use Yoeunes\Larafast\Traits\BlacklistTrait;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Yoeunes\Larafast\Traits\TransformerTrait;
+use Yoeunes\Larafast\Middlewares\BlacklistRoutes;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
