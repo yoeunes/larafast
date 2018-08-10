@@ -102,6 +102,22 @@ class WebControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_store_data_to_database_and_return_json_response()
+    {
+        $data = ['title' => 'laravel test store method', 'subject' => 'php'];
+
+        /** @var TestResponse $result */
+        $response = $this->postJson('/lessons', $data);
+
+        $response->assertSuccessful();
+        $response->assertJsonFragment(['message' => 'Created']);
+        $response->assertJsonFragment(['status_code' => Response::HTTP_CREATED]);
+        $response->assertJsonFragment($data);
+        $response->assertStatus(Response::HTTP_CREATED);
+        $this->assertDatabaseHas(Lesson::TABLE, $data);
+    }
+
+    /** @test */
     public function it_return_store_validation_errors()
     {
         /** @var TestResponse $result */
@@ -120,6 +136,18 @@ class WebControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_return_store_validation_errors_in_json_format()
+    {
+        /** @var TestResponse $result */
+        $response = $this->postJson('/lessons');
+
+        $expected = ['title' => ['The title field is required.'], 'subject' => ['The subject field is required.']];
+        $response->assertJsonFragment($expected);
+        $response->assertJsonFragment(['message' => 'The given data was invalid.']);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /** @test */
     public function it_update_lesson_in_database()
     {
         $lesson = Factory::create(Lesson::class);
@@ -132,6 +160,23 @@ class WebControllerTest extends TestCase
         $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
+        $this->assertDatabaseHas(Lesson::TABLE, array_merge(['id' => $lesson->id], $data));
+    }
+
+    /** @test */
+    public function it_update_lesson_in_database_and_return_json_response()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        $data = ['title' => 'new title', 'subject' => 'new subject'];
+
+        /** @var TestResponse $result */
+        $response = $this->putJson('/lessons/'.$lesson->id, $data);
+
+        $response->assertSuccessful();
+        $response->assertStatus(Response::HTTP_ACCEPTED);
+        $response->assertJsonFragment(['message' => 'Accepted']);
+        $response->assertJsonFragment(['status_code' => Response::HTTP_ACCEPTED]);
         $this->assertDatabaseHas(Lesson::TABLE, array_merge(['id' => $lesson->id], $data));
     }
 
@@ -178,6 +223,18 @@ class WebControllerTest extends TestCase
         $this->assertTrue($response->isRedirection());
         $response->assertSee('<title>Redirecting to http://localhost</title>');
         $response->assertSee('Redirecting to <a href="http://localhost">http://localhost</a>.');
+        $this->assertDatabaseMissing(Lesson::TABLE, ['id' => $lesson->id]);
+    }
+
+    /** @test */
+    public function it_delete_lesson_from_database_and_return_json_response()
+    {
+        $lesson = Factory::create(Lesson::class);
+
+        /** @var TestResponse $result */
+        $response = $this->deleteJson('/lessons/'.$lesson->id);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
         $this->assertDatabaseMissing(Lesson::TABLE, ['id' => $lesson->id]);
     }
 
