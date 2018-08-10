@@ -2,6 +2,10 @@
 
 namespace Yoeunes\Larafast\DataTables;
 
+use function array_values;
+use function collect;
+use function explode;
+use function is_string;
 use Yoeunes\Larafast\Entities\Entity;
 use Illuminate\Support\Facades\Schema;
 use Yajra\DataTables\EloquentDataTable;
@@ -80,10 +84,18 @@ class DataTable extends BaseDataTable
      */
     public function query(Entity $model)
     {
-        $query = $this->getEntity()->newQuery()->select($this->getColumns());
+        $columns = $this->getColumns();
 
-        if (count($relations = $this->getEntity()->dataTableEager)) {
-            $query->with($relations)->select($this->getEntity()->getTable() . '.*');
+        $query = $this->getEntity()->newQuery();
+
+        if (\count($relations = $this->getRelationsFromColumns($columns))) {
+            $query->with($relations);
+        }
+
+        if (!$this->areSimpleColumns($columns)) {
+            $query->select($this->getEntity()->getTable() . '.*');
+        } else {
+            $query->select($columns);
         }
 
         return $query;
@@ -125,7 +137,7 @@ class DataTable extends BaseDataTable
      *
      * @return array
      */
-    protected function getColumns()
+    public function getColumns()
     {
         if (count($this->columns)) {
             return $this->columns;
@@ -140,7 +152,47 @@ class DataTable extends BaseDataTable
         return array_diff(Schema::getColumnListing($this->getEntity()->getTable()), $this->getEntity()->getHidden());
     }
 
-    protected function setColumns(array $columns = [])
+    public function areSimpleColumns(array $columns)
+    {
+        return 0 === \count(array_filter($columns, function ($element) {
+            return !is_string($element);
+        }));
+    }
+
+    /**
+     * @param array $columns
+     *
+     * @return array
+     */
+    public function getRelationsFromColumns(array $columns): array
+    {
+        $relations = array_filter($columns, function ($element) {
+            if (\is_string($element)) {
+                return 1 === substr_count($element, '.');
+            }
+            if (isset($element['name'])) {
+                return 1 === substr_count($element['name'], '.');
+            }
+
+            return false;
+        });
+
+        $relations = array_map(function ($element) {
+            if (\is_string($element)) {
+                return explode('.', $element)[0];
+            }
+
+            if (isset($element['name'])) {
+                return explode('.', $element['name'])[0];
+            }
+
+            return $element;
+        }, $relations);
+
+        return array_values($relations);
+    }
+
+    public function setColumns(array $columns = [])
     {
         $this->columns = $columns;
 
