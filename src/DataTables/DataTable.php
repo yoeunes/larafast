@@ -64,8 +64,8 @@ class DataTable extends BaseDataTable
         $result = [];
 
         foreach ($columns as $index => $column) {
-            if (is_int($index)) {
-                $result[$column] = null;
+            if (\is_int($index)) {
+                $result[$column['name'] ?? $column] = null;
                 continue;
             }
 
@@ -92,7 +92,7 @@ class DataTable extends BaseDataTable
             $query->with($relations);
         }
 
-        if (!$this->areSimpleColumns($columns)) {
+        if (!$this->areSimpleColumns($columns) || \count($relations)) {
             $query->select($this->getEntity()->getTable() . '.*');
         } else {
             $query->select($columns);
@@ -139,11 +139,11 @@ class DataTable extends BaseDataTable
      */
     public function getColumns()
     {
-        if (count($this->columns)) {
+        if (\count($this->columns)) {
             return $this->columns;
         }
 
-        if (count($columns = $this->getEntity()->dataTableColumns)) {
+        if (\count($columns = $this->getEntity()->dataTableColumns)) {
             $this->formattedColumns = $this->formatColumns($columns);
 
             return array_keys($this->formattedColumns);

@@ -23,8 +23,8 @@ class Lesson extends Entity
     public $dataTableColumns = [
         'id',
         'title',
-        'subject',
-        'active',
+        ['name' => 'subject', 'title' => 'Sujet', 'data' => 'data sujet'],
+        'active' => '<span class="active">{{ $active }}</span>',
         'user_id',
         'created_at',
         'updated_at',

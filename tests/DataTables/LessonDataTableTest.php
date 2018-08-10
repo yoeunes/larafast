@@ -9,11 +9,13 @@ use Yoeunes\Larafast\Tests\TestCase;
 
 class LessonDataTableTest extends TestCase
 {
+    public const LESSONS_COUNT =  2;
+
     public function setUp()
     {
         parent::setUp();
 
-        Factory::times(10)->create(Lesson::class);
+        Factory::times(self::LESSONS_COUNT)->create(Lesson::class);
     }
 
     /** @test */
@@ -21,11 +23,11 @@ class LessonDataTableTest extends TestCase
     {
         $datatables = new LessonDataTable();
 
-        /** @var \Illuminate\Database\Eloquent\Builder $query */
-        $query = $datatables->query(new Lesson());
+        /** @var \Illuminate\Database\Eloquent\Builder $builder */
+        $builder = $datatables->query(new Lesson());
 
-        $this->assertEquals('select "id", "title", "subject", "active", "user_id", "created_at", "updated_at" from "lessons"', $query->toSql());
-        $this->assertCount(10, $query->get());
+        $this->assertEquals('select "id", "title", "subject", "active", "user_id", "created_at", "updated_at" from "lessons"', $builder->toSql());
+        $this->assertCount(self::LESSONS_COUNT, $builder->get());
     }
 
     /** @test */
@@ -38,11 +40,11 @@ class LessonDataTableTest extends TestCase
             'subject'
         ]);
 
-        /** @var \Illuminate\Database\Eloquent\Builder $query */
-        $query = $datatables->query(new Lesson());
+        /** @var \Illuminate\Database\Eloquent\Builder $builder */
+        $builder = $datatables->query(new Lesson());
 
-        $this->assertEquals('select "id", "title", "subject" from "lessons"', $query->toSql());
-        $this->assertCount(10, $query->get());
+        $this->assertEquals('select "id", "title", "subject" from "lessons"', $builder->toSql());
+        $this->assertCount(self::LESSONS_COUNT, $builder->get());
     }
 
     /** @test */
@@ -56,9 +58,9 @@ class LessonDataTableTest extends TestCase
             'user.id'
         ]);
 
-        /** @var \Illuminate\Database\Eloquent\Builder $query */
-        $query = $datatables->query(new Lesson());
-        $this->assertCount(10, $query->get());
+        /** @var \Illuminate\Database\Eloquent\Builder $builder */
+        $builder = $datatables->query(new Lesson());
+        $this->assertCount(self::LESSONS_COUNT, $builder->get());
     }
 
     /** @test */
@@ -70,8 +72,16 @@ class LessonDataTableTest extends TestCase
             ['name' => 'title', 'title' => 'Title', 'data' => 'title'],
         ]);
 
-        /** @var \Illuminate\Database\Eloquent\Builder $query */
-        $query = $datatables->query(new Lesson());
-        $this->assertCount(10, $query->get());
+        /** @var \Illuminate\Database\Eloquent\Builder $builder */
+        $builder = $datatables->query(new Lesson());
+        $this->assertCount(self::LESSONS_COUNT, $builder->get());
+    }
+
+    /** @test */
+    public function it_format_columns()
+    {
+        $datatables = new LessonDataTable();
+        $datatables->render('default.index');
+        $builder = $datatables->ajax()->getData(true);
     }
 }
