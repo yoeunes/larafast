@@ -89,7 +89,7 @@ class WebController extends Controller
 
         $entity = $this->getEntity()->findOrFail($id);
 
-        return view($this->getView(__FUNCTION__), compact('entity'));
+        return request()->wantsJson() ? $this->respond(fractal($entity, $this->getTransformer())->toArray()) : view($this->getView(__FUNCTION__), compact('entity'));
     }
 
     /**
