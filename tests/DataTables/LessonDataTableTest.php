@@ -3,9 +3,9 @@
 namespace Yoeunes\Larafast\Tests\DataTables;
 
 use Laracasts\TestDummy\Factory;
-use Yoeunes\Larafast\Tests\Stubs\DataTables\LessonDataTable;
-use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
 use Yoeunes\Larafast\Tests\TestCase;
+use Yoeunes\Larafast\Tests\Stubs\Entities\Lesson;
+use Yoeunes\Larafast\Tests\Stubs\DataTables\LessonDataTable;
 
 class LessonDataTableTest extends TestCase
 {
@@ -37,7 +37,7 @@ class LessonDataTableTest extends TestCase
         $datatables->setColumns([
             'id',
             'title',
-            'subject'
+            'subject',
         ]);
 
         /** @var \Illuminate\Database\Eloquent\Builder $builder */
@@ -55,7 +55,7 @@ class LessonDataTableTest extends TestCase
             'id',
             'title',
             'subject',
-            'user.id'
+            'user.id',
         ]);
 
         /** @var \Illuminate\Database\Eloquent\Builder $builder */

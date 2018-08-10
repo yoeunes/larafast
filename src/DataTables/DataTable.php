@@ -2,10 +2,9 @@
 
 namespace Yoeunes\Larafast\DataTables;
 
-use function array_values;
-use function collect;
 use function explode;
 use function is_string;
+use function array_values;
 use Yoeunes\Larafast\Entities\Entity;
 use Illuminate\Support\Facades\Schema;
 use Yajra\DataTables\EloquentDataTable;
@@ -92,7 +91,7 @@ class DataTable extends BaseDataTable
             $query->with($relations);
         }
 
-        if (!$this->areSimpleColumns($columns) || \count($relations)) {
+        if (! $this->areSimpleColumns($columns) || \count($relations)) {
             $query->select($this->getEntity()->getTable() . '.*');
         } else {
             $query->select($columns);
@@ -155,7 +154,7 @@ class DataTable extends BaseDataTable
     public function areSimpleColumns(array $columns)
     {
         return 0 === \count(array_filter($columns, function ($element) {
-            return !is_string($element);
+            return ! is_string($element);
         }));
     }
 
