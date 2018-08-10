@@ -19,4 +19,9 @@ class Lesson extends Entity
         'title'   => 'required|max:255',
         'subject' => 'required|max:255',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

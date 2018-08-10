@@ -4,6 +4,7 @@ $factory(Yoeunes\Larafast\Tests\Stubs\Entities\Lesson::class, [
     'title'   => $faker->sentence,
     'subject' => $faker->words(2),
     'active'  => $faker->boolean,
+    'user_id' => 'factory:Yoeunes\Larafast\Tests\Stubs\Entities\User'
 ]);
 
 $factory(Yoeunes\Larafast\Tests\Stubs\Entities\User::class, [

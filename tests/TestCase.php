@@ -152,6 +152,10 @@ class TestCase extends BaseTestCase
             $table->string('title');
             $table->string('subject');
             $table->boolean('active')->default(false);
+
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
 

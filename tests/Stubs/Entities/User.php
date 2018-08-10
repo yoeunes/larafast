@@ -29,4 +29,9 @@ class User extends BaseUser
         'email'    => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6|confirmed',
     ];
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

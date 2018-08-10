@@ -31,8 +31,9 @@ class WebControllerTest extends TestCase
         $response = $this->get('/lessons');
 
         $response->assertSuccessful();
+
         $response->assertSee('<title>lessons index |  Larafast</title>');
-        $response->assertSee('<table  class="table table-bordered" id="dataTableBuilder"><thead><tr><th >Id</th><th >Title</th><th >Subject</th><th >Active</th><th >Created At</th><th >Updated At</th><th  width="80px">Action</th></tr></thead></table>');
+        $response->assertSee('<table  class="table table-bordered" id="dataTableBuilder"><thead><tr><th >Id</th><th >Title</th><th >Subject</th><th >Active</th><th >User Id</th><th >Created At</th><th >Updated At</th><th  width="80px">Action</th></tr></thead></table>');
     }
 
     /** @test */
