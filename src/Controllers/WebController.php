@@ -2,15 +2,15 @@
 
 namespace Yoeunes\Larafast\Controllers;
 
-use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
-use Maatwebsite\Excel\Collections\RowCollection;
-use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Yoeunes\Larafast\Entities\Entity;
-use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
-use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
-use Yoeunes\Larafast\Traits\DataTableScopeTrait;
-use Yoeunes\Larafast\Traits\DataTableTrait;
 use Yoeunes\Larafast\Traits\ViewTrait;
+use Yoeunes\Larafast\Traits\DataTableTrait;
+use Yoeunes\Larafast\Jobs\ImportFromExcelJob;
+use Maatwebsite\Excel\Collections\RowCollection;
+use Yoeunes\Larafast\Traits\DataTableScopeTrait;
+use Maatwebsite\Excel\Writers\LaravelExcelWriter;
+use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
+use Yoeunes\Larafast\Middlewares\UriSessionForWebRoutes;
 
 class WebController extends Controller
 {
