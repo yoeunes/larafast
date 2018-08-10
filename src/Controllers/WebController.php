@@ -122,7 +122,7 @@ class WebController extends Controller
             return request()->wantsJson() ? $this->accepted() : success(trans(static::MESSAGES_SUCCESS_UPDATE));
         }
 
-        return error(trans(static::MESSAGES_ERROR));
+        return request()->wantsJson() ? $this->internalError() : error(trans(static::MESSAGES_ERROR));
     }
 
     /**
