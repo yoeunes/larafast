@@ -145,7 +145,7 @@ class DataTable extends BaseDataTable
         if (\count($columns = $this->getEntity()->dataTableColumns)) {
             $this->formattedColumns = $this->formatColumns($columns);
 
-            return array_keys($this->formattedColumns);
+            return $columns;
         }
 
         return array_diff(Schema::getColumnListing($this->getEntity()->getTable()), $this->getEntity()->getHidden());
